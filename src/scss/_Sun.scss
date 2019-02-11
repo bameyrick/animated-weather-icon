@@ -1,0 +1,54 @@
+
+$sun-small-scale: .75;
+
+.Sun {
+  $c: &;
+
+  &__circle,
+  &__ray {
+    transform: scale(0);
+    transform-origin: 50% 50%;
+    stroke: $yellow;
+
+    &--active {
+      transform: scale(1);
+    }
+  }
+
+  &__circle {
+    fill: $white;
+
+    transition: transform .5s $ease-in-out-back;
+  }
+  
+  &__rays {
+    transform-origin: 50% 50%;
+
+    &--animate {
+      animation: weather-rotate 120s linear infinite;
+    }
+  }
+
+  &__ray {
+    transition: transform .5s $ease-in-out-quad;
+  }
+
+  @for $i from 1 through 8 {
+    &__ray--#{$i}#{$c}__ray--animate {
+      transition: none;
+      animation: weather-ray#{$i} 5s infinite;
+    }
+  }
+
+  &--small {
+    transform: scale($sun-small-scale) translate(10%, -10%);
+    transform-origin: 50% 50%;
+  }
+
+  &--small & {
+    &__circle,
+    &__ray {
+      stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
+    }
+  }
+}

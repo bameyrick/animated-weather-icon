@@ -1,0 +1,46 @@
+.Hail {
+  &__drop {
+    fill: $off-white;
+    fill-opacity: 0;
+
+    &--animate {
+      animation: {
+        duration: 1s;
+        timing-function: ease-in;
+        iteration-count: infinite;
+      }
+
+      &:nth-child(1),
+      &:nth-child(4) {
+        animation: {
+          name: weather-hail-left, weather-fade-in-out;
+        }
+      }
+
+      &:nth-child(2) {
+        animation: {
+          name: weather-hail-middle, weather-fade-in-out;
+        }
+      }
+
+      &:nth-child(5) {
+        animation: {
+          name: weather-hail-middle-2, weather-fade-in-out;
+        }
+      }
+
+      &:nth-child(3),
+      &:nth-child(6) {
+        animation: {
+          name: weather-hail-right, weather-fade-in-out;
+        }
+      }
+
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: 1s * (1 / 6 * $i - 1 / 6);
+        }
+      }
+    }
+  }
+}
