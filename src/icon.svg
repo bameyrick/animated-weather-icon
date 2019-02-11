@@ -35,5 +35,13 @@
         <circle class="WeatherIcon__path Hail__drop" cx="51" cy="63" r="1"/>
         <circle class="WeatherIcon__path Hail__drop" cx="56" cy="63" r="1"/>
     </g>
+    <g class="WeatherIcon__snow Snow">
+        <circle class="WeatherIcon__path Snow__drop" cx="46" cy="63" r="1"/>
+        <circle class="WeatherIcon__path Snow__drop" cx="51" cy="63" r="1"/>
+        <circle class="WeatherIcon__path Snow__drop" cx="56" cy="63" r="1"/>
+        <circle class="WeatherIcon__path Snow__drop" cx="46" cy="63" r="1"/>
+        <circle class="WeatherIcon__path Snow__drop" cx="51" cy="63" r="1"/>
+        <circle class="WeatherIcon__path Snow__drop" cx="56" cy="63" r="1"/>
+    </g>
     <path class="WeatherIcon__path WeatherIcon__lightning" d="M48.9,58.6h6.9l-4.2,6.9h4.8l-9,11.1l2.5-8.3h-4.6L48.9,58.6z"/>
 </svg>

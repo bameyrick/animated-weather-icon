@@ -1,0 +1,62 @@
+.Snow {
+  &__drop {
+    fill: $off-white;
+    fill-opacity: 0;
+
+    &--animate {
+      animation: {
+        name: weather-snow, weather-fade-in-out;
+        duration: 9s;
+        timing-function: ease-in-out;
+        iteration-count: infinite;
+      }
+      
+      &:nth-child(2) {
+        animation-delay: 3s;
+      }
+  
+      &:nth-child(3),
+      &:nth-child(6) {
+        animation: {
+          name: weather-snow-2, weather-fade-in-out;
+          delay: 6s;
+        }
+      }
+    }
+
+    &:not(&--heavy) {
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        display: none;
+      }
+    }
+
+    &--heavy {
+      animation-duration: 4s;
+
+      &:nth-child(2) {
+        animation-delay: 1.5s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 2s;
+      }
+  
+      &:nth-child(4) {
+        animation: {
+          name: weather-snow-2, weather-fade-in-out;
+          delay: 2.5s;
+        }
+      }
+      
+      &:nth-child(5) {
+        animation-delay: 3s;
+      }
+      
+      &:nth-child(6) {
+        animation-delay: 3.5s;
+      }
+    }
+  }
+}

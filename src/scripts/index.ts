@@ -29,6 +29,7 @@ export enum WeatherIconType {
   ThunderStormHeavyDrizzle,
   Hail,
   Sleet,
+  SleetShowers,
   LightSnow,
   Snow,
   HeavySnow,
@@ -72,6 +73,7 @@ const cloudTypes = [
   WeatherIconType.ThunderStormHeavyDrizzle,
   WeatherIconType.Hail,
   WeatherIconType.Sleet,
+  WeatherIconType.SleetShowers,
   WeatherIconType.LightSnow,
   WeatherIconType.Snow,
   WeatherIconType.HeavySnow,
@@ -109,7 +111,9 @@ const allRainTypes = [
 const lightDrizzleTypes = [
   WeatherIconType.LightDrizzle,
   WeatherIconType.LightDrizzleShowers,
-  WeatherIconType.ThunderStormLightDrizzle
+  WeatherIconType.ThunderStormLightDrizzle,
+  WeatherIconType.Sleet,
+  WeatherIconType.SleetShowers
 ];
 
 const drizzleTypes = [
@@ -140,6 +144,21 @@ const allHeavyRainTypes = [
   ...heavyDrizzleTypes
 ];
 
+const heavySnowTypes = [
+  WeatherIconType.HeavySnow,
+  WeatherIconType.HeavySnowShowers,
+  WeatherIconType.Sleet,
+  WeatherIconType.SleetShowers
+];
+
+const snowTypes = [
+  ...heavySnowTypes,
+  WeatherIconType.LightSnow,
+  WeatherIconType.Snow,
+  WeatherIconType.LightSnowShowers,
+  WeatherIconType.SnowShowers,
+];
+
 export default class WeatherIcon {
   private icon: HTMLElement;
   private sun: Sun;
@@ -148,6 +167,7 @@ export default class WeatherIcon {
   private rainClass: string;
   private lightningPath: SVGPathElement;
   private hailDrops: SVGPathElement[];
+  private snowDrops: SVGPathElement[];
 
   constructor(context: HTMLElement, private type: WeatherIconType, private time: WeatherIconTime = WeatherIconTime.Day) {
     this.icon = document.createElement('div');
@@ -160,6 +180,7 @@ export default class WeatherIcon {
     this.setRainPath();
     this.setLightningPath();
     this.setHailPath();
+    this.setSnowPath();
 
     this.icon.classList.add('WeatherIcon--initialised');
 
@@ -189,7 +210,8 @@ export default class WeatherIcon {
       WeatherIconType.LightRainShowers,
       WeatherIconType.RainShowers,
       WeatherIconType.HeavyRainShowers,
-      WeatherIconType.ThunderStormLightRain
+      WeatherIconType.ThunderStormLightRain,
+      WeatherIconType.SleetShowers
     ];
 
     const allSunTypes = [WeatherIconType.Clear, ...sunTypes];
@@ -216,8 +238,7 @@ export default class WeatherIcon {
 
       switch(this.type) {
         case WeatherIconType.Cloudy:
-        case WeatherIconType.Snow:
-        case WeatherIconType.SnowShowers:
+
         case WeatherIconType.Sleet:
         case WeatherIconType.Drizzle:
         case WeatherIconType.DrizzleShowers:
@@ -226,13 +247,13 @@ export default class WeatherIcon {
         case WeatherIconType.ThunderStorm:
         case WeatherIconType.ThunderStormRain:
         case WeatherIconType.ThunderStormDrizzle:
-        case WeatherIconType.Hail: {
+        case WeatherIconType.Hail:
+        case WeatherIconType.HeavySnow:
+        case WeatherIconType.HeavySnowShowers: {
           this.cloudPath.classList.add(`${cls}--medium`);
           break;
         }
         case WeatherIconType.Overcast:
-        case WeatherIconType.HeavySnow:
-        case WeatherIconType.HeavySnowShowers:
         case WeatherIconType.HeavyDrizzle:
         case WeatherIconType.HeavyDrizzleShowers:
         case WeatherIconType.HeavyRain:
@@ -290,6 +311,18 @@ export default class WeatherIcon {
     }
   }
 
+  private setSnowPath(): void {
+    if (snowTypes.includes(this.type)) {
+      this.snowDrops = [].slice.call(this.icon.querySelectorAll('.Snow__drop'));
+
+      this.snowDrops.forEach(drop => drop.classList.add(activePathClass));
+
+      if (heavySnowTypes.includes(this.type)) {
+        this.snowDrops.forEach(drop => drop.classList.add('Snow__drop--heavy'));
+      }
+    }
+  }
+
   public Show(): void {
     if (this.type === WeatherIconType.Clear) {
       if (this.time === WeatherIconTime.Day) {
@@ -314,6 +347,10 @@ export default class WeatherIcon {
 
         if (this.hailDrops) {
           this.hailDrops.forEach(drop => drop.classList.add(`Hail__drop--animate`));
+        }
+
+        if (this.snowDrops) {
+          this.snowDrops.forEach(drop => drop.classList.add(`Snow__drop--animate`));
         }
       }, 1500);
     }
