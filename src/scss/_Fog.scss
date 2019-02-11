@@ -1,0 +1,27 @@
+.Fog {
+  animation: weather-bob 5s linear infinite;
+
+  &__bar {
+    fill: $light-grey;
+    fill-opacity: 0;
+
+    transition: fill-opacity .5s ease-in-out;
+
+    &--animate {
+      fill-opacity: .5;
+
+      animation: {
+        name: weather-fog;
+        duration: 5s;
+        timing-function: ease-in-out;
+        iteration-count: infinite;
+      }
+
+      @for $i from 1 through 7 {
+        &:nth-child(#{$i}) {
+          animation-delay: .5s * $i;
+        }
+      }
+    }
+  }
+}

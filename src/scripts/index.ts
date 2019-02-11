@@ -168,6 +168,7 @@ export default class WeatherIcon {
   private lightningPath: SVGPathElement;
   private hailDrops: SVGPathElement[];
   private snowDrops: SVGPathElement[];
+  private fogPaths: SVGPathElement[];
 
   constructor(context: HTMLElement, private type: WeatherIconType, private time: WeatherIconTime = WeatherIconTime.Day) {
     this.icon = document.createElement('div');
@@ -181,6 +182,7 @@ export default class WeatherIcon {
     this.setLightningPath();
     this.setHailPath();
     this.setSnowPath();
+    this.setFogPaths();
 
     this.icon.classList.add('WeatherIcon--initialised');
 
@@ -323,6 +325,14 @@ export default class WeatherIcon {
     }
   }
 
+  private setFogPaths(): void {
+    if(this.type === WeatherIconType.Fog) {
+      this.fogPaths = [].slice.call(this.icon.querySelectorAll('.Fog__bar'));
+
+      this.fogPaths.forEach(bar => bar.classList.add(activePathClass));
+    }
+  }
+
   public Show(): void {
     if (this.type === WeatherIconType.Clear) {
       if (this.time === WeatherIconTime.Day) {
@@ -352,7 +362,11 @@ export default class WeatherIcon {
         if (this.snowDrops) {
           this.snowDrops.forEach(drop => drop.classList.add(`Snow__drop--animate`));
         }
+
+       
       }, 1500);
+    } else if (this.fogPaths) {
+      this.fogPaths.forEach(bar => bar.classList.add('Fog__bar--animate'));
     }
   }
 }

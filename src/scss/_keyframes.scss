@@ -275,3 +275,23 @@ $weather-animation-t: 0;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
   }
 }
+
+@keyframes weather-fog {
+  0% {
+    transform: translate(0);
+    fill-opacity: .5;
+  }
+  25% {
+    transform: translateX(1%);
+  }
+  50% {
+    fill-opacity: 1;
+  }
+  85% {
+    transform: translateX(-1%);
+  }
+  100% {
+    transform: translate(0);
+    fill-opacity: .5;
+  }
+}
