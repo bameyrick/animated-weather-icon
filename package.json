@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "rm -rf ./build && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
-    "build": "rm -rf ./build && webpack --config webpack.prod.babel.js"
+    "build": "rm -rf ./build && webpack --config webpack.prod.babel.js",
+    "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
