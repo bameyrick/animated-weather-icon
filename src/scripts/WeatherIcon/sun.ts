@@ -6,7 +6,7 @@ import delay from './delay';
 
 export default class Sun extends WeatherPartAbstract {
   protected baseClass = 'Sun';
-  protected type = WeatherTypes.Clear;
+  protected types = [WeatherTypes.Clear];
 
   private circle: SVGPathElement;
   private raysContainer: SVGElement;
@@ -24,9 +24,9 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       if (this.time === WeatherTimes.Day) {
         await this.renderInSun();
-
-        resolve();
       }
+
+      resolve();
     });
   }
 
@@ -34,15 +34,16 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       if (this.time === WeatherTimes.Day) {
         await this.renderOutSun();
-
-        resolve();
       }
+
+      resolve();
     }); 
   }
 
   private renderInSun(): Promise<void> {
     return new Promise(async resolve => {
       this.setActiveState(true);
+
       await this.activateRays(true);
       await delay(400);
       await this.animateRays(true);
@@ -55,9 +56,10 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       await this.animateRays(false);
       await this.activateRays(false);
+      
       this.setActiveState(false);
 
-      resolve();
+      setTimeout(resolve, 500);
     });
   }
 

@@ -18,7 +18,7 @@ $sun-small-scale: .75;
   &__circle {
     fill: $white;
 
-    transition: transform .5s $ease-in-out-back;
+    transition: transform .5s $ease-out-back;
   }
   
   &__rays {
