@@ -1,4 +1,4 @@
 export enum WeatherTimes {
   Day = 'Day',
-  Night = 'Night'
+  Night = 'Night',
 }

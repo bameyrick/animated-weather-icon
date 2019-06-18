@@ -1,5 +1,5 @@
-import { WeatherTypes } from "./weather-types";
-import { WeatherTimes } from "./weather-times";
+import { WeatherTypes } from './weather-types';
+import { WeatherTimes } from './weather-times';
 
 export default class WeatherPartAbstract {
   protected baseClass: string;
@@ -57,7 +57,7 @@ export default class WeatherPartAbstract {
     return new Promise(resolve => resolve);
   }
 
-  private initialise(): void  {
+  private initialise(): void {
     this.getContext();
     this.getPaths();
     this.setOffsets();
@@ -70,8 +70,8 @@ export default class WeatherPartAbstract {
   }
 
   private getPaths(): void {
-    this.paths = <SVGPathElement[]>[...<any>this.context.querySelectorAll(`.${this.baseClass}__path`)];
-  } 
+    this.paths = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__path`))];
+  }
 
   private setOffsets(): void {
     this.paths.forEach(path => {

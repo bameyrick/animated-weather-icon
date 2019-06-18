@@ -7,7 +7,6 @@ class Example {
   private typesSelect: HTMLSelectElement;
   private timesSelect: HTMLSelectElement;
 
-
   constructor() {
     this.icon = new WeatherIcon(<HTMLElement>document.querySelector('.js-placeholder'));
     this.typesSelect = <HTMLSelectElement>document.querySelector('.js-weather-types');
@@ -42,7 +41,7 @@ class Example {
 
     await this.icon.unsetIcon();
     await this.icon.setType(<WeatherTypes>this.typesSelect.value, <WeatherTimes>this.timesSelect.value);
-  
+
     this.typesSelect.removeAttribute('disabled');
     this.timesSelect.removeAttribute('disabled');
   }

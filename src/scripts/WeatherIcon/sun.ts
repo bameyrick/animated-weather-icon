@@ -5,8 +5,8 @@ import asyncForEach from './asyncForEach';
 import delay from './delay';
 
 export default class Sun extends WeatherPartAbstract {
-  protected baseClass = 'Sun';
-  protected types = [WeatherTypes.Clear];
+  protected baseClass: string = 'Sun';
+  protected types: WeatherTypes[] = [WeatherTypes.Clear];
 
   private circle: SVGPathElement;
   private raysContainer: SVGElement;
@@ -15,7 +15,7 @@ export default class Sun extends WeatherPartAbstract {
   protected getElements(): void {
     this.circle = <SVGPathElement>this.context.querySelector('.Sun__circle');
     this.raysContainer = <SVGElement>this.context.querySelector('.Sun__rays');
-    this.rays = <SVGPathElement[]>[...<any>this.context.querySelectorAll('.Sun__ray')];
+    this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll('.Sun__ray'))];
 
     this.activationPaths = [this.circle, ...this.rays];
   }
@@ -37,7 +37,7 @@ export default class Sun extends WeatherPartAbstract {
       }
 
       resolve();
-    }); 
+    });
   }
 
   private renderInSun(): Promise<void> {
@@ -56,7 +56,7 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       await this.animateRays(false);
       await this.activateRays(false);
-      
+
       this.setActiveState(false);
 
       setTimeout(resolve, 500);
@@ -78,18 +78,18 @@ export default class Sun extends WeatherPartAbstract {
     return this.setRays(animateIn, 'Sun__ray--animate');
   }
 
-  private setRays(animateIn: boolean, cls: string, delay: number = 0): Promise<void> {
+  private setRays(animateIn: boolean, cls: string, iterationDelay: number = 0): Promise<void> {
     return new Promise(async resolve => {
-      const setter = animateIn ? 'add' : 'remove'; 
+      const setter = animateIn ? 'add' : 'remove';
       const rays = animateIn ? this.rays : this.rays.reverse();
 
       await asyncForEach(rays, ray => {
-        return new Promise(resolve => {
+        return new Promise(rayResolve => {
           setTimeout(() => {
             ray.classList[setter](cls);
 
-            resolve();
-          }, delay);
+            rayResolve();
+          }, iterationDelay);
         });
       });
 

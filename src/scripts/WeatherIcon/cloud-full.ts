@@ -1,12 +1,7 @@
-import CloudAbstract from "./cloud-abstract";
+import CloudAbstract from './cloud-abstract';
 import { WeatherTypes } from './weather-types';
 
-
 export default class CloudFull extends CloudAbstract {
-  protected typeClass = 'full';
-  protected types = [
-    WeatherTypes.BrokenClouds,
-    WeatherTypes.Cloudy,
-    WeatherTypes.Overcast,
-  ];
+  protected typeClass: string = 'full';
+  protected types: WeatherTypes[] = [WeatherTypes.BrokenClouds, WeatherTypes.Cloudy, WeatherTypes.Overcast];
 }

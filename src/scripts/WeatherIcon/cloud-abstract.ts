@@ -1,14 +1,14 @@
-import WeatherPartAbstract from "./weather-part-abstract";
+import WeatherPartAbstract from './weather-part-abstract';
 import { WeatherTypes } from './weather-types';
 
 export default class CloudAbstract extends WeatherPartAbstract {
-  protected baseClass = 'Cloud';
+  protected baseClass: string = 'Cloud';
   protected typeClass: string;
 
   protected path: SVGPathElement;
 
   private dashArrayOffset: string;
-  private animationDuration = 3000;
+  private animationDuration: number = 3000;
 
   protected getElements(): void {
     this.path = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__path--${this.typeClass}`);
@@ -70,7 +70,7 @@ export default class CloudAbstract extends WeatherPartAbstract {
     }
   }
 
-  private setClasses(remove = false): Promise<void> {
+  private setClasses(remove: boolean = false): Promise<void> {
     return new Promise(resolve => {
       const operator = remove ? 'remove' : 'add';
 
