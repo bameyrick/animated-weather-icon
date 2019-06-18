@@ -16,7 +16,7 @@ body {
   transform: translate(-50%, -50%);
 
   width: 50vw;
-  height: 50vw;
+  max-width: 60vh;
 
   &__options {
     padding: 10px;
