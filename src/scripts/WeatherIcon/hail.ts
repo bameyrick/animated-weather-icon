@@ -14,16 +14,16 @@ export default class Hail extends WeatherPartAbstract {
   }
 
   protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      this.drops.forEach(drop => drop.classList.add(`${this.baseClass}__drop--animate`));
-
-      resolve();
-    });
+    return this.render();
   }
 
   protected renderOut(): Promise<void> {
+    return this.render(false);
+  }
+
+  private render(animateIn: boolean = true): Promise<void> {
     return new Promise(async resolve => {
-      this.drops.forEach(drop => drop.classList.remove(`${this.baseClass}__drop--animate`));
+      this.drops.forEach(drop => drop.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__drop--animate`));
 
       resolve();
     });

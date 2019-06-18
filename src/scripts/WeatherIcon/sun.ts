@@ -29,10 +29,10 @@ export default class Sun extends WeatherPartAbstract {
 
   protected getElements(): void {
     this.types = [WeatherTypes.Clear, ...this.smallTypes];
-    this.circle = <SVGPathElement>this.context.querySelector('.Sun__circle');
-    this.raysContainer = <SVGElement>this.context.querySelector('.Sun__rays');
-    this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll('.Sun__ray'))];
-    this.moon = <SVGPathElement>this.context.querySelector('.Sun__night');
+    this.circle = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__circle`);
+    this.raysContainer = <SVGElement>this.context.querySelector(`.${this.baseClass}__rays`);
+    this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__ray`))];
+    this.moon = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__night`);
 
     this.activationPaths = [this.circle, ...this.rays, this.moon];
   }
@@ -87,8 +87,8 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       const operator = active ? 'add' : 'remove';
 
-      this.circle.classList[operator]('Sun__circle--active');
-      this.raysContainer.classList[operator]('Sun__rays--animate');
+      this.circle.classList[operator](`${this.baseClass}__circle--active`);
+      this.raysContainer.classList[operator](`${this.baseClass}__rays--animate`);
 
       await this.setSmallClass(active);
 
@@ -100,7 +100,7 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       if (this.smallTypes.includes(this.type)) {
         await delay(active ? 0 : 500);
-        this.context.classList[active ? 'add' : 'remove']('Sun--small');
+        this.context.classList[active ? 'add' : 'remove'](`${this.baseClass}--small`);
       }
 
       resolve();
@@ -108,11 +108,11 @@ export default class Sun extends WeatherPartAbstract {
   }
 
   private activateRays(animateIn: boolean = true): Promise<void> {
-    return this.setRays(animateIn, 'Sun__ray--active', 100);
+    return this.setRays(animateIn, `${this.baseClass}__ray--active`, 100);
   }
 
   private animateRays(animateIn: boolean): Promise<void> {
-    return this.setRays(animateIn, 'Sun__ray--animate');
+    return this.setRays(animateIn, `${this.baseClass}__ray--animate`);
   }
 
   private setRays(animateIn: boolean, cls: string, iterationDelay: number = 0): Promise<void> {

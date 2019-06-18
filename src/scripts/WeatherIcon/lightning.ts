@@ -22,16 +22,16 @@ export default class Lightning extends WeatherPartAbstract {
   }
 
   protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      this.lightningPath.classList.add(`${this.baseClass}__path--animate`);
-
-      resolve();
-    });
+    return this.render();
   }
 
   protected renderOut(): Promise<void> {
+    return this.render(false);
+  }
+
+  private render(animateIn: boolean = true): Promise<void> {
     return new Promise(async resolve => {
-      this.lightningPath.classList.remove(`${this.baseClass}__path--animate`);
+      this.lightningPath.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__path--animate`);
 
       resolve();
     });
