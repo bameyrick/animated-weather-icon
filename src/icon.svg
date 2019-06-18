@@ -11,12 +11,14 @@
             <line class="WeatherIcon__path Sun__ray Sun__ray--7" x1="32" y1="50" x2="28" y2="50"/>
             <line class="WeatherIcon__path Sun__ray Sun__ray--8" x1="37.3" y1="37.3" x2="34.4" y2="34.4"/>
         </g>
-        <circle class="Sun__circle WeatherIcon__path " cx="50" cy="50" r="10"/>
+        <circle class="WeatherIcon__path Sun__circle" cx="50" cy="50" r="10"/>
     </g>
+    <g class="Cloud">
     <!-- Cloud Full -->
-    <path class="WeatherIcon__path WeatherIcon__cloud-full-path" d="M43.7,63.5c-7.5,0-13.5-6-13.5-13.5c0-7.5,6-13.5,13.5-13.5c5.5,0,10.3,3.3,12.4,8.1c1.2-0.5,2.5-0.8,3.9-0.8 c5.4,0,9.8,4.4,9.8,9.8s-4.4,9.8-9.8,9.8H43.7z"/>
-    <!-- Cloud -->
-    <path class="WeatherIcon__path WeatherIcon__cloud-path" d="M38.9,62.6c-0.7-0.3-1.5-0.6-2.1-1.1c-3.9-2.4-6.5-6.7-6.5-11.5c0-7.5,6-13.5,13.5-13.5c5.5,0,10.3,3.3,12.4,8.1 c1.2-0.5,2.5-0.8,3.9-0.8c5.4,0,9.8,4.4,9.8,9.8c0,3.5-1.8,6.5-4.5,8.3c-0.7,0.5-1.5,0.8-2.3,1.1"/>
+        <path class="WeatherIcon__path WeatherIcon__cloud-full-path" d="M43.7,63.5c-7.5,0-13.5-6-13.5-13.5c0-7.5,6-13.5,13.5-13.5c5.5,0,10.3,3.3,12.4,8.1c1.2-0.5,2.5-0.8,3.9-0.8 c5.4,0,9.8,4.4,9.8,9.8s-4.4,9.8-9.8,9.8H43.7z"/>
+        <!-- Cloud -->
+        <path class="WeatherIcon__path WeatherIcon__cloud-path" d="M38.9,62.6c-0.7-0.3-1.5-0.6-2.1-1.1c-3.9-2.4-6.5-6.7-6.5-11.5c0-7.5,6-13.5,13.5-13.5c5.5,0,10.3,3.3,12.4,8.1 c1.2-0.5,2.5-0.8,3.9-0.8c5.4,0,9.8,4.4,9.8,9.8c0,3.5-1.8,6.5-4.5,8.3c-0.7,0.5-1.5,0.8-2.3,1.1"/>
+    </g>
     <g class="WeatherIcon__rain Rain">
         <line class="WeatherIcon__path Rain__drop" x1="47" y1="58" x2="47" y2="62"/>
         <line class="WeatherIcon__path Rain__drop" x1="53" y1="58" x2="53" y2="62"/>

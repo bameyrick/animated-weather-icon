@@ -8,6 +8,15 @@ html
         link(href="/example.css" rel="stylesheet")
     body
         .Example
+            .Example__placeholder.js-placeholder
+
+            .Example__options
+                p.Example__option
+                    label(for="weather-type").Example__label Weather Type
+                    select#weather-type.Example__select.js-weather-types(disabled)
+                p.Example__option
+                    label(for="weather-time").Example__label Time
+                    select#weather-time.Example__select.js-weather-times(disabled)
 
         script(src="/index.js")
         if debug
