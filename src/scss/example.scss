@@ -1,3 +1,5 @@
+@import 'variables';
+
 html,
 body {
   height: 100%;
@@ -15,4 +17,24 @@ body {
 
   width: 50vw;
   height: 50vw;
+
+  &__options {
+    padding: 10px;
+    border: 2px solid $light-grey;
+
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  &__option {
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin: 0 0 .25em;
+  }
 }
