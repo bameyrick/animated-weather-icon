@@ -7,6 +7,7 @@ import Rain from './rain';
 import Drizzle from './drizzle';
 import Snow from './snow';
 import Lightning from './lightning';
+import Hail from './hail';
 
 const SVG = require('../../icon.svg');
 
@@ -20,6 +21,7 @@ export default class WeatherIcon {
   private drizzle: Drizzle;
   private snow: Snow;
   private lightning: Lightning;
+  private hail: Hail;
 
   constructor(private context: HTMLElement) {
     this.initialiseIcon();
@@ -39,6 +41,7 @@ export default class WeatherIcon {
     this.drizzle = new Drizzle(this.context);
     this.snow = new Snow(this.context);
     this.lightning = new Lightning(this.context);
+    this.hail = new Hail(this.context);
   }
 
   public setType(type: WeatherTypes, time: WeatherTimes = WeatherTimes.Day): Promise<void> {
@@ -50,6 +53,7 @@ export default class WeatherIcon {
       await this.rain.show(type, time);
       await this.drizzle.show(type, time);
       await this.snow.show(type, time);
+      await this.hail.show(type, time);
       await this.lightning.show(type, time);
       await this.sun.show(type, time);
       resolve();
@@ -63,6 +67,7 @@ export default class WeatherIcon {
       await this.rain.hide(this.currentType);
       await this.drizzle.hide(this.currentType);
       await this.snow.hide(this.currentType);
+      await this.hail.hide(this.currentType);
       await this.cloudFull.hide(this.currentType);
       await this.cloudPartial.hide(this.currentType);
 
