@@ -18,7 +18,7 @@ $sun-small-scale: .75;
   &__circle {
     fill: $white;
 
-    transition: transform .5s $ease-out-back;
+    transition: transform .5s $ease-out-quart;
   }
   
   &__rays {
@@ -30,12 +30,11 @@ $sun-small-scale: .75;
   }
 
   &__ray {
-    transition: transform .5s $ease-in-out-quad;
+    transition: transform .5s $ease-out-quart;
   }
 
   @for $i from 1 through 8 {
     &__ray--#{$i}#{$c}__ray--animate {
-      transition: none;
       animation: weather-ray#{$i} 5s infinite;
     }
   }

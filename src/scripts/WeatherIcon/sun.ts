@@ -54,8 +54,8 @@ export default class Sun extends WeatherPartAbstract {
 
   private renderOutSun(): Promise<void> {
     return new Promise(async resolve => {
-      await this.animateRays(false);
       await this.activateRays(false);
+      await this.animateRays(false);
 
       this.setActiveState(false);
 
