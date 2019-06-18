@@ -197,6 +197,7 @@ rules:
       - 'background-size'
       - 'box-shadow'
       - 'fill'
+      - 'fill-opacity'
       - 'opacity'
       
       # Typography
