@@ -5,6 +5,7 @@ import Sun from './sun';
 const SVG = require('../../icon.svg');
 
 export default class WeatherIcon {
+  private currentType: WeatherTypes;
   private icon: HTMLElement;
   private sun: Sun;
 
@@ -23,9 +24,18 @@ export default class WeatherIcon {
   }
 
   public setType(type: WeatherTypes, time: WeatherTimes = WeatherTimes.Day): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
+      this.currentType = type;
 
-      this.sun.setType(type, time);
+      await this.sun.show(type, time);
+      resolve();
+    });
+  }
+
+  public unsetIcon(): Promise<void> {
+    return new Promise (async resolve => {
+      await this.sun.hide(this.currentType);
+
       resolve();
     });
   }

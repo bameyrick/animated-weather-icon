@@ -15,26 +15,7 @@ export default class WeatherPartAbstract {
     setTimeout(this.initialise.bind(this));
   }
 
-  public setType(type: WeatherTypes, time: WeatherTimes): Promise<void> {
-    return new Promise(async resolve => {
-      await this.show(type, time);
-      await this.hide(type);
-
-      resolve();
-    });
-  }
-
-  protected getElements(): void {}
-
-  protected renderIn(): Promise<void> {
-    return new Promise(resolve => resolve);
-  }
-
-  protected renderOut(): Promise<void> {
-    return new Promise(resolve => resolve);
-  }
-
-  private show(type: WeatherTypes, time: WeatherTimes): Promise<void> {
+  public show(type: WeatherTypes, time: WeatherTimes): Promise<void> {
     return new Promise(async resolve => {
       if (type === this.type && !this.visible) {
         this.time = time;
@@ -50,9 +31,9 @@ export default class WeatherPartAbstract {
     });
   }
 
-  private hide(type: WeatherTypes): Promise<void> {
+  public hide(type: WeatherTypes): Promise<void> {
     return new Promise(async resolve => {
-      if (type !== this.type && this.visible) {
+      if (type === this.type && this.visible) {
         await this.renderOut();
 
         this.visible = false;
@@ -62,6 +43,16 @@ export default class WeatherPartAbstract {
         resolve();
       }
     });
+  }
+
+  protected getElements(): void {}
+
+  protected renderIn(): Promise<void> {
+    return new Promise(resolve => resolve);
+  }
+
+  protected renderOut(): Promise<void> {
+    return new Promise(resolve => resolve);
   }
 
   private initialise(): void  {

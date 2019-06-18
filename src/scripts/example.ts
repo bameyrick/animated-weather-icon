@@ -40,6 +40,7 @@ class Example {
     this.typesSelect.setAttribute('disabled', '');
     this.timesSelect.setAttribute('disabled', '');
 
+    await this.icon.unsetIcon();
     await this.icon.setType(<WeatherTypes>this.typesSelect.value, <WeatherTimes>this.timesSelect.value);
   
     this.typesSelect.removeAttribute('disabled');
