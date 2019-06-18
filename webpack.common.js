@@ -97,7 +97,7 @@ export default function(mode) {
         },
         {
           test: /\.svg$/,
-          use: 'raw-loader'
+          use: 'svg-inline-loader'
         }
       ]
     },
