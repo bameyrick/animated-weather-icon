@@ -45,7 +45,9 @@
         <circle class="WeatherIcon__path Snow__drop" cx="51" cy="63" r="1"/>
         <circle class="WeatherIcon__path Snow__drop" cx="56" cy="63" r="1"/>
     </g>
-    <path class="WeatherIcon__path WeatherIcon__lightning" d="M48.9,58.6h6.9l-4.2,6.9h4.8l-9,11.1l2.5-8.3h-4.6L48.9,58.6z"/>
+    <g class="WeatherIcon__lightning Lightning">
+        <path class="WeatherIcon__path Lightning__path" d="M48.9,58.6h6.9l-4.2,6.9h4.8l-9,11.1l2.5-8.3h-4.6L48.9,58.6z"/>
+    </g>
     <g class="WeatherIcon__fog Fog">
         <path class="WeatherIcon__path Fog__bar" d="M60,41.6c-0.7,0-1.4,0.1-2,0.2c0-0.1-0.1-0.1-0.1-0.2H30.2c-0.4,0.6-0.7,1.3-1,2h37.4C64.7,42.4,62.5,41.6,60,41.6z"/>
         <path class="WeatherIcon__path Fog__bar" d="M68.9,45.6H28.5c-0.2,0.7-0.3,1.3-0.4,2h42.2C70,46.9,69.5,46.3,68.9,45.6z"/>

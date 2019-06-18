@@ -9,14 +9,4 @@
       display: block;
     }
   }
-
-  &__lightning {
-    transform-origin: 50% 50%;
-    fill: $yellow;
-    opacity: 0;
-
-    &--animate {
-      animation: weather-lightning 2s linear infinite;
-    }
-  }
 }
