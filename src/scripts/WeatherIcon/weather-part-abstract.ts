@@ -3,10 +3,11 @@ import { WeatherTimes } from "./weather-times";
 
 export default class WeatherPartAbstract {
   protected baseClass: string;
-  protected type: WeatherTypes;
+  protected types: WeatherTypes[];
   protected visible: boolean;
   protected time: WeatherTimes;
   protected activationPaths: SVGPathElement[];
+  protected type: WeatherTypes;
 
   protected context: SVGElement;
   private paths: SVGPathElement[];
@@ -17,7 +18,8 @@ export default class WeatherPartAbstract {
 
   public show(type: WeatherTypes, time: WeatherTimes): Promise<void> {
     return new Promise(async resolve => {
-      if (type === this.type && !this.visible) {
+      if (this.types.includes(type) && !this.visible) {
+        this.type = type;
         this.time = time;
 
         await this.renderIn();
@@ -33,7 +35,7 @@ export default class WeatherPartAbstract {
 
   public hide(type: WeatherTypes): Promise<void> {
     return new Promise(async resolve => {
-      if (type === this.type && this.visible) {
+      if (this.types.includes(type) && this.visible) {
         await this.renderOut();
 
         this.visible = false;

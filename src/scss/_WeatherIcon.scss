@@ -10,25 +10,6 @@
     }
   }
 
-  &__cloud-full-path, 
-  &__cloud-path {
-    stroke: $off-white;
-    
-    fill: $white;
-
-    &--medium {
-      stroke: $grey;
-    }
-
-    &--dark {
-      stroke: $dark-grey;
-    }
-
-    &--active {
-      animation: weather-bob 5s linear infinite;
-    }
-  }
-
   &__lightning {
     transform-origin: 50% 50%;
     fill: $yellow;
@@ -36,13 +17,6 @@
 
     &--animate {
       animation: weather-lightning 2s linear infinite;
-    }
-  }
-
-  &--initialised & {
-    &__cloud-full-path,
-    &__cloud-path {
-      transition: stroke-dashoffset 3s $ease-in-out-quad;
     }
   }
 }
