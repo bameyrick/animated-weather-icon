@@ -22,7 +22,7 @@ $sun-small-scale: .75;
   }
   
   &__rays {
-    transform-origin: 50% 50%;
+    transform-origin: 50%;
 
     &--animate {
       animation: weather-rotate 120s linear infinite;
@@ -39,6 +39,22 @@ $sun-small-scale: .75;
     }
   }
 
+  &__night {
+    transform-origin: 50%;
+
+    fill: $light-grey;
+
+    opacity: 0;
+
+    transition: opacity .5s $ease-out-quart;
+
+    animation: weather-rock 5s infinite;
+
+    &--animate {
+      opacity: 1;
+    }
+  }
+
   &--small {
     transform: scale($sun-small-scale) translate(10%, -10%);
     transform-origin: 50% 50%;
@@ -49,5 +65,9 @@ $sun-small-scale: .75;
     &__ray {
       stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
     }
+  }
+
+  &--night#{$c}--small {
+    transform: scale($sun-small-scale) translate(10%, -15%);
   }
 }

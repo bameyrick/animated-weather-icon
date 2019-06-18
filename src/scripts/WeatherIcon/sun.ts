@@ -25,20 +25,24 @@ export default class Sun extends WeatherPartAbstract {
   private circle: SVGPathElement;
   private raysContainer: SVGElement;
   private rays: SVGPathElement[];
+  private moon: SVGPathElement;
 
   protected getElements(): void {
     this.types = [WeatherTypes.Clear, ...this.smallTypes];
     this.circle = <SVGPathElement>this.context.querySelector('.Sun__circle');
     this.raysContainer = <SVGElement>this.context.querySelector('.Sun__rays');
     this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll('.Sun__ray'))];
+    this.moon = <SVGPathElement>this.context.querySelector('.Sun__night');
 
-    this.activationPaths = [this.circle, ...this.rays];
+    this.activationPaths = [this.circle, ...this.rays, this.moon];
   }
 
   protected renderIn(): Promise<void> {
     return new Promise(async resolve => {
       if (this.time === WeatherTimes.Day) {
         await this.renderInSun();
+      } else {
+        await this.renderMoon();
       }
 
       resolve();
@@ -49,6 +53,8 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       if (this.time === WeatherTimes.Day) {
         await this.renderOutSun();
+      } else {
+        await this.renderMoon(false);
       }
 
       resolve();
@@ -84,9 +90,17 @@ export default class Sun extends WeatherPartAbstract {
       this.circle.classList[operator]('Sun__circle--active');
       this.raysContainer.classList[operator]('Sun__rays--animate');
 
+      await this.setSmallClass(active);
+
+      resolve();
+    });
+  }
+
+  private setSmallClass(active: boolean): Promise<void> {
+    return new Promise(async resolve => {
       if (this.smallTypes.includes(this.type)) {
         await delay(active ? 0 : 500);
-        this.context.classList[operator]('Sun--small');
+        this.context.classList[active ? 'add' : 'remove']('Sun--small');
       }
 
       resolve();
@@ -115,6 +129,19 @@ export default class Sun extends WeatherPartAbstract {
           }, iterationDelay);
         });
       });
+
+      resolve();
+    });
+  }
+
+  private renderMoon(animateIn: boolean = true): Promise<void> {
+    return new Promise(async resolve => {
+      const operator = animateIn ? 'add' : 'remove';
+      this.context.classList[operator](`${this.baseClass}--night`);
+      this.setSmallClass(animateIn);
+      this.moon.classList[operator](`${this.baseClass}__night--animate`);
+
+      await delay(500);
 
       resolve();
     });
