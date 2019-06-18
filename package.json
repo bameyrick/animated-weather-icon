@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "rm -rf ./build && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
-    "build": "rm -rf ./build && webpack --config webpack.prod.babel.js"
+    "build": "rm -rf ./build && webpack --config webpack.prod.babel.js",
+    "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -33,11 +34,12 @@
     "postcss-url": "^8.0.0",
     "prettier": "^1.16.4",
     "pug-html-loader": "^1.1.5",
-    "raw-loader": "^1.0.0",
     "sass-helpers": "https://github.com/bameyrick/sass-helpers",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
+    "svg-inline-loader": "^0.8.0",
     "ts-loader": "^5.3.3",
+    "tslint": "^5.17.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.3.1",
     "webpack": "^4.29.3",

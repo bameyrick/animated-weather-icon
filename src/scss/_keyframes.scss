@@ -295,3 +295,13 @@ $weather-animation-t: 0;
     fill-opacity: .5;
   }
 }
+
+@keyframes weather-rock {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}

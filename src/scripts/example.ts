@@ -1,7 +1,50 @@
-import WeatherIcon, { WeatherIconType } from './index';
+import WeatherIcon from './WeatherIcon';
+import { WeatherTypes } from './WeatherIcon/weather-types';
+import { WeatherTimes } from './WeatherIcon/weather-times';
 
-const placeholder = <HTMLElement>document.querySelector('.Example');
+class Example {
+  private icon: WeatherIcon;
+  private typesSelect: HTMLSelectElement;
+  private timesSelect: HTMLSelectElement;
 
-const icon = new WeatherIcon(placeholder, WeatherIconType.Hail);
+  constructor() {
+    this.icon = new WeatherIcon(<HTMLElement>document.querySelector('.js-placeholder'));
+    this.typesSelect = <HTMLSelectElement>document.querySelector('.js-weather-types');
+    this.timesSelect = <HTMLSelectElement>document.querySelector('.js-weather-times');
 
-setTimeout(() => icon.Show(), 100);
+    this.setTypes();
+    this.setTimes();
+
+    this.typesSelect.addEventListener('change', this.updateIcon.bind(this));
+    this.timesSelect.addEventListener('change', this.updateIcon.bind(this));
+
+    setTimeout(this.updateIcon.bind(this), 10);
+  }
+
+  private setTypes(): void {
+    this.setOptions(WeatherTypes, this.typesSelect);
+  }
+
+  private setTimes(): void {
+    this.setOptions(WeatherTimes, this.timesSelect);
+  }
+
+  private setOptions(type: typeof WeatherTypes | typeof WeatherTimes, select: HTMLSelectElement): void {
+    const options = Object.keys(type).map(key => `<option value="${type[key]}">${type[key]}</option>`);
+
+    select.innerHTML = options.join('');
+  }
+
+  private async updateIcon(): Promise<void> {
+    this.typesSelect.setAttribute('disabled', '');
+    this.timesSelect.setAttribute('disabled', '');
+
+    await this.icon.unsetIcon();
+    await this.icon.setType(<WeatherTypes>this.typesSelect.value, <WeatherTimes>this.timesSelect.value);
+
+    this.typesSelect.removeAttribute('disabled');
+    this.timesSelect.removeAttribute('disabled');
+  }
+}
+
+new Example();

@@ -18,11 +18,11 @@ $sun-small-scale: .75;
   &__circle {
     fill: $white;
 
-    transition: transform .5s $ease-in-out-back;
+    transition: transform .5s $ease-out-quart;
   }
   
   &__rays {
-    transform-origin: 50% 50%;
+    transform-origin: 50%;
 
     &--animate {
       animation: weather-rotate 120s linear infinite;
@@ -30,13 +30,28 @@ $sun-small-scale: .75;
   }
 
   &__ray {
-    transition: transform .5s $ease-in-out-quad;
+    transition: transform .5s $ease-out-quart;
   }
 
   @for $i from 1 through 8 {
     &__ray--#{$i}#{$c}__ray--animate {
-      transition: none;
       animation: weather-ray#{$i} 5s infinite;
+    }
+  }
+
+  &__night {
+    transform-origin: 50%;
+
+    fill: $light-grey;
+
+    opacity: 0;
+
+    transition: opacity .5s $ease-out-quart;
+
+    animation: weather-rock 5s infinite;
+
+    &--animate {
+      opacity: 1;
     }
   }
 
@@ -50,5 +65,9 @@ $sun-small-scale: .75;
     &__ray {
       stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
     }
+  }
+
+  &--night#{$c}--small {
+    transform: scale($sun-small-scale) translate(10%, -15%);
   }
 }
