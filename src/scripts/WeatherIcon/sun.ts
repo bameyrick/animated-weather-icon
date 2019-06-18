@@ -6,13 +6,28 @@ import delay from './delay';
 
 export default class Sun extends WeatherPartAbstract {
   protected baseClass: string = 'Sun';
-  protected types: WeatherTypes[] = [WeatherTypes.Clear];
+
+  private smallTypes: WeatherTypes[] = [
+    WeatherTypes.BrokenClouds,
+    WeatherTypes.LightSnowShowers,
+    WeatherTypes.SnowShowers,
+    WeatherTypes.HeavySnowShowers,
+    WeatherTypes.LightDrizzleShowers,
+    WeatherTypes.DrizzleShowers,
+    WeatherTypes.HeavyDrizzleShowers,
+    WeatherTypes.LightRainShowers,
+    WeatherTypes.RainShowers,
+    WeatherTypes.HeavyRainShowers,
+    WeatherTypes.ThunderStormLightRain,
+    WeatherTypes.SleetShowers,
+  ];
 
   private circle: SVGPathElement;
   private raysContainer: SVGElement;
   private rays: SVGPathElement[];
 
   protected getElements(): void {
+    this.types = [WeatherTypes.Clear, ...this.smallTypes];
     this.circle = <SVGPathElement>this.context.querySelector('.Sun__circle');
     this.raysContainer = <SVGElement>this.context.querySelector('.Sun__rays');
     this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll('.Sun__ray'))];
@@ -42,8 +57,7 @@ export default class Sun extends WeatherPartAbstract {
 
   private renderInSun(): Promise<void> {
     return new Promise(async resolve => {
-      this.setActiveState(true);
-
+      await this.setActiveState(true);
       await this.activateRays(true);
       await delay(400);
       await this.animateRays(true);
@@ -56,18 +70,27 @@ export default class Sun extends WeatherPartAbstract {
     return new Promise(async resolve => {
       await this.activateRays(false);
       await this.animateRays(false);
+      await this.setActiveState(false);
+      await delay(500);
 
-      this.setActiveState(false);
-
-      setTimeout(resolve, 500);
+      resolve();
     });
   }
 
-  private setActiveState(active: boolean): void {
-    const setter = active ? 'add' : 'remove';
+  private setActiveState(active: boolean): Promise<void> {
+    return new Promise(async resolve => {
+      const operator = active ? 'add' : 'remove';
 
-    this.circle.classList[setter]('Sun__circle--active');
-    this.raysContainer.classList[setter]('Sun__rays--animate');
+      this.circle.classList[operator]('Sun__circle--active');
+      this.raysContainer.classList[operator]('Sun__rays--animate');
+
+      if (this.smallTypes.includes(this.type)) {
+        await delay(active ? 0 : 500);
+        this.context.classList[operator]('Sun--small');
+      }
+
+      resolve();
+    });
   }
 
   private activateRays(animateIn: boolean = true): Promise<void> {
