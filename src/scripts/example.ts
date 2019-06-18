@@ -30,7 +30,7 @@ class Example {
   }
 
   private setOptions(type: typeof WeatherTypes | typeof WeatherTimes, select: HTMLSelectElement): void {
-    const options = Object.keys(type).map(key => `<option value=${key}>${type[key]}</option>`);
+    const options = Object.keys(type).map(key => `<option value="${type[key]}">${type[key]}</option>`);
 
     select.innerHTML = options.join('');
   }

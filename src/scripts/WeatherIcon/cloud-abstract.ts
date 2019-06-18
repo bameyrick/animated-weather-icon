@@ -40,7 +40,7 @@ export default class CloudAbstract extends WeatherPartAbstract {
   }
 
   private getColourModifier(): string {
-    switch(this.type) {
+    switch (this.type) {
       case WeatherTypes.Cloudy:
       case WeatherTypes.Sleet:
       case WeatherTypes.Drizzle:
@@ -74,8 +74,7 @@ export default class CloudAbstract extends WeatherPartAbstract {
     return new Promise(resolve => {
       const operator = remove ? 'remove' : 'add';
 
-      this.path.classList[operator](`${this.baseClass}__path--active`);
-      this.path.classList[operator](`${this.baseClass}__path--${this.getColourModifier()}`);
+      this.path.classList[operator](`${this.baseClass}__path--active`, `${this.baseClass}__path--${this.getColourModifier()}`);
 
       setTimeout(resolve);
     });
