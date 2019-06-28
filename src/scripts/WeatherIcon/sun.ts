@@ -4,6 +4,8 @@ import { WeatherTimes } from './weather-times';
 import asyncForEach from './asyncForEach';
 import delay from './delay';
 
+const sunRayDelay = 50;
+
 export default class Sun extends WeatherPartAbstract {
   protected baseClass: string = 'Sun';
 
@@ -37,113 +39,87 @@ export default class Sun extends WeatherPartAbstract {
     this.activationPaths = [this.circle, ...this.rays, this.moon];
   }
 
-  protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      if (this.time === WeatherTimes.Day) {
-        await this.renderInSun();
-      } else {
-        await this.renderMoon();
-      }
-
-      resolve();
-    });
+  protected async renderIn(): Promise<void> {
+    if (this.time === WeatherTimes.Day) {
+      await this.renderInSun();
+    } else {
+      await this.renderInMoon();
+    }
   }
 
-  protected renderOut(): Promise<void> {
-    return new Promise(async resolve => {
-      if (this.time === WeatherTimes.Day) {
-        await this.renderOutSun();
-      } else {
-        await this.renderMoon(false);
-      }
-
-      resolve();
-    });
+  protected async renderOut(): Promise<void> {
+    if (this.time === WeatherTimes.Day) {
+      await this.renderOutSun();
+    } else {
+      await this.renderOutMoon();
+    }
   }
 
-  private renderInSun(): Promise<void> {
-    return new Promise(async resolve => {
-      await this.setActiveState(true);
-      await this.activateRays(true);
-      await delay(400);
-      await this.animateRays(true);
-
-      resolve();
-    });
+  private async renderInSun(): Promise<void> {
+    await this.setActiveState(true);
+    await this.activateRays(true);
+    await delay(500);
+    await this.animateRays(true);
   }
 
-  private renderOutSun(): Promise<void> {
-    return new Promise(async resolve => {
-      await this.activateRays(false);
-      await this.animateRays(false);
-      await this.setActiveState(false);
-      await delay(500);
-
-      resolve();
-    });
+  private async renderOutSun(): Promise<void> {
+    await this.activateRays(false);
+    await this.animateRays(false);
+    await this.setActiveState(false);
+    await delay(500);
   }
 
-  private setActiveState(active: boolean): Promise<void> {
-    return new Promise(async resolve => {
-      const operator = active ? 'add' : 'remove';
+  private async setActiveState(active: boolean): Promise<void> {
+    const operator = active ? 'add' : 'remove';
 
-      this.circle.classList[operator](`${this.baseClass}__circle--active`);
-      this.raysContainer.classList[operator](`${this.baseClass}__rays--animate`);
+    this.circle.classList[operator](`${this.baseClass}__circle--active`);
+    this.raysContainer.classList[operator](`${this.baseClass}__rays--animate`);
 
-      await this.setSmallClass(active);
-
-      resolve();
-    });
+    await this.setSmallClass(active);
   }
 
-  private setSmallClass(active: boolean): Promise<void> {
-    return new Promise(async resolve => {
-      if (this.smallTypes.includes(this.type)) {
-        await delay(active ? 0 : 500);
-        this.context.classList[active ? 'add' : 'remove'](`${this.baseClass}--small`);
-      }
-
-      resolve();
-    });
+  private async setSmallClass(active: boolean): Promise<void> {
+    if (this.smallTypes.includes(this.type)) {
+      await delay(active ? 0 : 500);
+      this.context.classList[active ? 'add' : 'remove'](`${this.baseClass}--small`);
+    }
   }
 
   private activateRays(animateIn: boolean = true): Promise<void> {
-    return this.setRays(animateIn, `${this.baseClass}__ray--active`, 100);
+    return this.setRays(animateIn, `${this.baseClass}__ray--active`, sunRayDelay);
   }
 
   private animateRays(animateIn: boolean): Promise<void> {
     return this.setRays(animateIn, `${this.baseClass}__ray--animate`);
   }
 
-  private setRays(animateIn: boolean, cls: string, iterationDelay: number = 0): Promise<void> {
-    return new Promise(async resolve => {
-      const setter = animateIn ? 'add' : 'remove';
-      const rays = animateIn ? this.rays : this.rays.reverse();
+  private async setRays(animateIn: boolean, cls: string, iterationDelay: number = 0): Promise<void> {
+    const setter = animateIn ? 'add' : 'remove';
+    const rays = animateIn ? this.rays : this.rays.reverse();
 
-      await asyncForEach(rays, ray => {
-        return new Promise(rayResolve => {
-          setTimeout(() => {
-            ray.classList[setter](cls);
+    await asyncForEach(rays, ray => {
+      return new Promise(rayResolve => {
+        setTimeout(() => {
+          ray.classList[setter](cls);
 
-            rayResolve();
-          }, iterationDelay);
-        });
+          rayResolve();
+        }, iterationDelay);
       });
-
-      resolve();
     });
   }
 
-  private renderMoon(animateIn: boolean = true): Promise<void> {
-    return new Promise(async resolve => {
-      const operator = animateIn ? 'add' : 'remove';
-      this.context.classList[operator](`${this.baseClass}--night`);
-      this.setSmallClass(animateIn);
-      this.moon.classList[operator](`${this.baseClass}__night--animate`);
+  private async renderInMoon(): Promise<void> {
+    this.context.classList.add(`${this.baseClass}--night`);
+    this.setSmallClass(true);
+    this.moon.classList.add(`${this.baseClass}__night--animate`);
 
-      await delay(500);
+    await delay(500);
+  }
 
-      resolve();
-    });
+  private async renderOutMoon(): Promise<void> {
+    this.moon.classList.remove(`${this.baseClass}__night--animate`);
+    await delay(500);
+    this.context.classList.remove(`${this.baseClass}--night`);
+    this.setSmallClass(false);
   }
 }

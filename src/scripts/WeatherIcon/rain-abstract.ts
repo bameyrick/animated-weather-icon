@@ -15,24 +15,16 @@ export default class RainAbstract extends WeatherPartAbstract {
     this.activationPaths = this.drops;
   }
 
-  protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      this.drops.forEach(drop =>
-        drop.classList.add(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)
-      );
-
-      resolve();
-    });
+  protected async renderIn(): Promise<void> {
+    this.drops.forEach(drop =>
+      drop.classList.add(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)
+    );
   }
 
-  protected renderOut(): Promise<void> {
-    return new Promise(async resolve => {
-      this.drops.forEach(drop =>
-        drop.classList.remove(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)
-      );
-
-      resolve();
-    });
+  protected async renderOut(): Promise<void> {
+    this.drops.forEach(drop =>
+      drop.classList.remove(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)
+    );
   }
 
   private getWeightModifier(): string {

@@ -8,7 +8,7 @@ export default class CloudAbstract extends WeatherPartAbstract {
   protected path: SVGPathElement;
 
   private dashArrayOffset: string;
-  private animationDuration: number = 3000;
+  private animationDuration: number = 1000;
 
   protected getElements(): void {
     this.path = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__path--${this.typeClass}`);
