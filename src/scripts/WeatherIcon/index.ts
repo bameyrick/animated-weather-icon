@@ -12,6 +12,9 @@ import Fog from './fog';
 
 const SVG = require('../../icon.svg');
 
+export { WeatherTypes } from './weather-types';
+export { WeatherTimes } from './weather-times';
+
 export default class WeatherIcon {
   private currentType: WeatherTypes;
   private icon: HTMLElement;

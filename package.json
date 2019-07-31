@@ -5,8 +5,9 @@
   "author": "Ben Meyrick <bameyrick@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "rm -rf ./build && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
-    "build": "rm -rf ./build && webpack --config webpack.prod.babel.js",
+    "start": "yarn tidy-clean && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
+    "build": "yarn tidy-clean && tsc --p tsconfig.dist.json --outDir dist/",
+    "tidy-clean": "rm -rf ./build ./dist",
     "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn"
   },
   "devDependencies": {
