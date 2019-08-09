@@ -1,6 +1,6 @@
-import WeatherIcon from './WeatherIcon';
-import { WeatherTypes } from './WeatherIcon/weather-types';
-import { WeatherTimes } from './WeatherIcon/weather-times';
+import { WeatherIcon, WeatherTypes, WeatherTimes } from './WeatherIcon';
+
+import '../scss/example.scss';
 
 class Example {
   private icon: WeatherIcon;

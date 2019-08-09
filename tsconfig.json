@@ -11,7 +11,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "dist",
     "lib": ["es2017.object", "es2015", "es2017", "dom"]
   },
   "include": ["src/**/*"],

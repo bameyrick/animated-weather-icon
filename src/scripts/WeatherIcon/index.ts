@@ -10,12 +10,14 @@ import Lightning from './lightning';
 import Hail from './hail';
 import Fog from './fog';
 
+import '../../scss/index.scss';
+
 const SVG = require('../../icon.svg');
 
 export { WeatherTypes } from './weather-types';
 export { WeatherTimes } from './weather-times';
 
-export default class WeatherIcon {
+export class WeatherIcon {
   private currentType: WeatherTypes;
   private icon: HTMLElement;
   private sun: Sun;

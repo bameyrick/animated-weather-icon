@@ -3,9 +3,7 @@ import * as path from 'path';
 
 import { NoEmitOnErrorsPlugin, ProgressPlugin, NamedModulesPlugin } from 'webpack';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import FixStyleOnlyEntriesPlugin from 'webpack-fix-style-only-entries';
-import SASSModuleImporter from 'sass-module-importer';
 
 import postcssPlugins from './postcss.config';
 
@@ -19,8 +17,6 @@ export default function(mode) {
 
     entry: {
       html: ['./index.pug'],
-      styles: ['./scss/index.scss'],
-      example: ['./scss/example.scss'],
       index: ['./scripts/example.ts']
     },
 
@@ -64,7 +60,9 @@ export default function(mode) {
         {
           test: /\.scss$|\.sass$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            {
+              loader: 'style-loader',
+            },
             {
               loader: 'css-loader',
               options: {
@@ -85,7 +83,6 @@ export default function(mode) {
                 sourceMap: false,
                 precision: 8,
                 includePaths: [path.resolve('./src/styles')],
-                importer: SASSModuleImporter()
               }
             }
           ]
@@ -113,11 +110,6 @@ export default function(mode) {
       }),
   
       new NamedModulesPlugin(),
-
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
-      }),
 
       new FixStyleOnlyEntriesPlugin({
         extensions: ['scss', 'pug', 'html'],
