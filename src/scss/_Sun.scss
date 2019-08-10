@@ -56,7 +56,7 @@ $sun-small-scale: .75;
   }
 
   &--small {
-    transform: scale($sun-small-scale) translate(10%, -12%);
+    transform: scale($sun-small-scale) translate(15%, -20%);
     transform-origin: 50% 50%;
   }
 
@@ -68,6 +68,6 @@ $sun-small-scale: .75;
   }
 
   &--night#{$c}--small {
-    transform: scale($sun-small-scale) translate(10%, -15%);
+    transform: scale($sun-small-scale) translate(20%, -25%);
   }
 }
