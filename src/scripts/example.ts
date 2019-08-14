@@ -1,4 +1,4 @@
-import { AnimatedWeatherIcon, WeatherTypes, WeatherTimes } from './AnimatedWeatherIcon';
+import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from './AnimatedWeatherIcon';
 
 import '../scss/example.scss';
 
@@ -22,14 +22,14 @@ class Example {
   }
 
   private setTypes(): void {
-    this.setOptions(WeatherTypes, this.typesSelect);
+    this.setOptions(AnimatedWeatherTypes, this.typesSelect);
   }
 
   private setTimes(): void {
-    this.setOptions(WeatherTimes, this.timesSelect);
+    this.setOptions(AnimatedWeatherTimes, this.timesSelect);
   }
 
-  private setOptions(type: typeof WeatherTypes | typeof WeatherTimes, select: HTMLSelectElement): void {
+  private setOptions(type: typeof AnimatedWeatherTypes | typeof AnimatedWeatherTimes, select: HTMLSelectElement): void {
     const options = Object.keys(type).map(key => `<option value="${type[key]}">${type[key]}</option>`);
 
     select.innerHTML = options.join('');
@@ -40,7 +40,7 @@ class Example {
     this.timesSelect.setAttribute('disabled', '');
 
     await this.icon.unsetIcon();
-    await this.icon.setType(<WeatherTypes>this.typesSelect.value, <WeatherTimes>this.timesSelect.value);
+    await this.icon.setType(<AnimatedWeatherTypes>this.typesSelect.value, <AnimatedWeatherTimes>this.timesSelect.value);
 
     this.typesSelect.removeAttribute('disabled');
     this.timesSelect.removeAttribute('disabled');
