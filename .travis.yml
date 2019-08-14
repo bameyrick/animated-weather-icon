@@ -9,7 +9,7 @@ jobs:
     deploy:
     - provider: npm
       skip_cleanup: true
-        email: bameyrick@gmail.com
+      email: bameyrick@gmail.com
       api_key:
         secure: WGMbjMAig66glyIjb3zcDId9dQc2pVAHuEg1MKQL2rsz8xmhdr2hW0bNoZaEkJIH4F9+JE/Aluxl+Ove7SBQg7ni4q4qxPGfVujIfH8rC0pE9y3/ZPKZjl+jmfRg0z19iORr/yw0px3NSss1vyH/jYEi/kpGkRhAP1ewg8IvwAx3YipgDrsjJFprx5PSbeGR4xHdEolrV0AlbayybS6K1flc6NUAfCjvABXqzi1uIM3aAb0g71wd3FkyEHwxlK4qD8i9w8gRpODm8oqxK/4LMztD1WKTiVUo6uQ2FFuXU2nlQFIqA9WCAzeNaNh5OEbHjcGCU7vcaC5lHSqQ52zRdpNQxjzcJCsLvHSoOUQj4Z+WlE51v8Byq3/VvIEd8kKEHr1eUFx0W51QD1Wbma5fXK8PXychKWVeG9bnmXjL24s1g+KgPdj4nq+md0FUKZDsaT9UfJdOJG+mzUowOcd6HbfBQnKKnpmkuINcehxlKBSV7o3dEA3Ic2Syp+/Hu4Eb1uiptl9HeUCKOotCJ4S76IJ/ZpaZ2UAoJvbaq0gTLQH65FM8ZUvLN1WUutlMrGiXvP8LczMfYroonclfhrYl1JbarJ8OH7KDP4rjvi5Siw32tXVXpXKbqIDgxFhAAMvISmRAWnFRnt+iba6zQte6fmvY+VbdJRZ1wGr3PM81OVg=
       on:
