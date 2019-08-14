@@ -1,9 +1,9 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
+import { AnimatedWeatherTypes } from './weather-types';
 
 export default class Hail extends WeatherPartAbstract {
   protected baseClass: string = 'Hail';
-  protected types: WeatherTypes[] = [WeatherTypes.Hail];
+  protected types: AnimatedWeatherTypes[] = [AnimatedWeatherTypes.Hail];
 
   private drops: SVGPathElement[];
 

@@ -1,5 +1,5 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
+import { AnimatedWeatherTypes } from './weather-types';
 
 export default class CloudAbstract extends WeatherPartAbstract {
   protected baseClass: string = 'Cloud';
@@ -41,27 +41,27 @@ export default class CloudAbstract extends WeatherPartAbstract {
 
   private getColourModifier(): string {
     switch (this.type) {
-      case WeatherTypes.Cloudy:
-      case WeatherTypes.Sleet:
-      case WeatherTypes.Drizzle:
-      case WeatherTypes.DrizzleShowers:
-      case WeatherTypes.Rain:
-      case WeatherTypes.RainShowers:
-      case WeatherTypes.ThunderStorm:
-      case WeatherTypes.ThunderStormRain:
-      case WeatherTypes.ThunderStormDrizzle:
-      case WeatherTypes.Hail:
-      case WeatherTypes.HeavySnow:
-      case WeatherTypes.HeavySnowShowers: {
+      case AnimatedWeatherTypes.Cloudy:
+      case AnimatedWeatherTypes.Sleet:
+      case AnimatedWeatherTypes.Drizzle:
+      case AnimatedWeatherTypes.DrizzleShowers:
+      case AnimatedWeatherTypes.Rain:
+      case AnimatedWeatherTypes.RainShowers:
+      case AnimatedWeatherTypes.ThunderStorm:
+      case AnimatedWeatherTypes.ThunderStormRain:
+      case AnimatedWeatherTypes.ThunderStormDrizzle:
+      case AnimatedWeatherTypes.Hail:
+      case AnimatedWeatherTypes.HeavySnow:
+      case AnimatedWeatherTypes.HeavySnowShowers: {
         return `medium`;
       }
-      case WeatherTypes.Overcast:
-      case WeatherTypes.HeavyDrizzle:
-      case WeatherTypes.HeavyDrizzleShowers:
-      case WeatherTypes.HeavyRain:
-      case WeatherTypes.HeavyRainShowers:
-      case WeatherTypes.ThunderStormHeavyDrizzle:
-      case WeatherTypes.ThunderStormHeavyRain: {
+      case AnimatedWeatherTypes.Overcast:
+      case AnimatedWeatherTypes.HeavyDrizzle:
+      case AnimatedWeatherTypes.HeavyDrizzleShowers:
+      case AnimatedWeatherTypes.HeavyRain:
+      case AnimatedWeatherTypes.HeavyRainShowers:
+      case AnimatedWeatherTypes.ThunderStormHeavyDrizzle:
+      case AnimatedWeatherTypes.ThunderStormHeavyRain: {
         return 'dark';
       }
       default: {

@@ -1,6 +1,6 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
-import { WeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
+import { AnimatedWeatherTimes } from './weather-times';
 import asyncForEach from './asyncForEach';
 import delay from './delay';
 
@@ -9,19 +9,19 @@ const sunRayDelay = 50;
 export default class Sun extends WeatherPartAbstract {
   protected baseClass: string = 'Sun';
 
-  private smallTypes: WeatherTypes[] = [
-    WeatherTypes.BrokenClouds,
-    WeatherTypes.LightSnowShowers,
-    WeatherTypes.SnowShowers,
-    WeatherTypes.HeavySnowShowers,
-    WeatherTypes.LightDrizzleShowers,
-    WeatherTypes.DrizzleShowers,
-    WeatherTypes.HeavyDrizzleShowers,
-    WeatherTypes.LightRainShowers,
-    WeatherTypes.RainShowers,
-    WeatherTypes.HeavyRainShowers,
-    WeatherTypes.ThunderStormLightRain,
-    WeatherTypes.SleetShowers,
+  private smallTypes: AnimatedWeatherTypes[] = [
+    AnimatedWeatherTypes.BrokenClouds,
+    AnimatedWeatherTypes.LightSnowShowers,
+    AnimatedWeatherTypes.SnowShowers,
+    AnimatedWeatherTypes.HeavySnowShowers,
+    AnimatedWeatherTypes.LightDrizzleShowers,
+    AnimatedWeatherTypes.DrizzleShowers,
+    AnimatedWeatherTypes.HeavyDrizzleShowers,
+    AnimatedWeatherTypes.LightRainShowers,
+    AnimatedWeatherTypes.RainShowers,
+    AnimatedWeatherTypes.HeavyRainShowers,
+    AnimatedWeatherTypes.ThunderStormLightRain,
+    AnimatedWeatherTypes.SleetShowers,
   ];
 
   private circle: SVGPathElement;
@@ -30,7 +30,7 @@ export default class Sun extends WeatherPartAbstract {
   private moon: SVGPathElement;
 
   protected getElements(): void {
-    this.types = [WeatherTypes.Clear, ...this.smallTypes];
+    this.types = [AnimatedWeatherTypes.Clear, ...this.smallTypes];
     this.circle = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__circle`);
     this.raysContainer = <SVGElement>this.context.querySelector(`.${this.baseClass}__rays`);
     this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__ray`))];
@@ -40,7 +40,7 @@ export default class Sun extends WeatherPartAbstract {
   }
 
   protected async renderIn(): Promise<void> {
-    if (this.time === WeatherTimes.Day) {
+    if (this.time === AnimatedWeatherTimes.Day) {
       await this.renderInSun();
     } else {
       await this.renderInMoon();
@@ -48,7 +48,7 @@ export default class Sun extends WeatherPartAbstract {
   }
 
   protected async renderOut(): Promise<void> {
-    if (this.time === WeatherTimes.Day) {
+    if (this.time === AnimatedWeatherTimes.Day) {
       await this.renderOutSun();
     } else {
       await this.renderOutMoon();

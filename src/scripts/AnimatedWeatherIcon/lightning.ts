@@ -1,16 +1,16 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
+import { AnimatedWeatherTypes } from './weather-types';
 
 export default class Lightning extends WeatherPartAbstract {
   protected baseClass: string = 'Lightning';
-  protected types: WeatherTypes[] = [
-    WeatherTypes.ThunderStorm,
-    WeatherTypes.ThunderStormLightRain,
-    WeatherTypes.ThunderStormRain,
-    WeatherTypes.ThunderStormHeavyRain,
-    WeatherTypes.ThunderStormLightDrizzle,
-    WeatherTypes.ThunderStormDrizzle,
-    WeatherTypes.ThunderStormHeavyDrizzle,
+  protected types: AnimatedWeatherTypes[] = [
+    AnimatedWeatherTypes.ThunderStorm,
+    AnimatedWeatherTypes.ThunderStormLightRain,
+    AnimatedWeatherTypes.ThunderStormRain,
+    AnimatedWeatherTypes.ThunderStormHeavyRain,
+    AnimatedWeatherTypes.ThunderStormLightDrizzle,
+    AnimatedWeatherTypes.ThunderStormDrizzle,
+    AnimatedWeatherTypes.ThunderStormHeavyDrizzle,
   ];
 
   private lightningPath: SVGPathElement;

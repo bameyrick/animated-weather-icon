@@ -1,4 +1,4 @@
-export enum WeatherTimes {
+export enum AnimatedWeatherTimes {
   Day = 'Day',
   Night = 'Night',
 }

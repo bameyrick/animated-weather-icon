@@ -1,10 +1,10 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
+import { AnimatedWeatherTypes } from './weather-types';
 import { delay } from 'q';
 
 export default class Fog extends WeatherPartAbstract {
   protected baseClass: string = 'Fog';
-  protected types: WeatherTypes[] = [WeatherTypes.Fog];
+  protected types: AnimatedWeatherTypes[] = [AnimatedWeatherTypes.Fog];
 
   private fogBars: SVGPathElement[];
 

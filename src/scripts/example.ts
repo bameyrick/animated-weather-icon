@@ -1,14 +1,14 @@
-import { WeatherIcon, WeatherTypes, WeatherTimes } from './WeatherIcon';
+import { AnimatedWeatherIcon, WeatherTypes, WeatherTimes } from './AnimatedWeatherIcon';
 
 import '../scss/example.scss';
 
 class Example {
-  private icon: WeatherIcon;
+  private icon: AnimatedWeatherIcon;
   private typesSelect: HTMLSelectElement;
   private timesSelect: HTMLSelectElement;
 
   constructor() {
-    this.icon = new WeatherIcon(<HTMLElement>document.querySelector('.js-placeholder'));
+    this.icon = new AnimatedWeatherIcon(<HTMLElement>document.querySelector('.js-placeholder'));
     this.typesSelect = <HTMLSelectElement>document.querySelector('.js-weather-types');
     this.timesSelect = <HTMLSelectElement>document.querySelector('.js-weather-times');
 

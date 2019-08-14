@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/scripts/WeatherIcon/**/*"],
+  "include": ["src/scripts/AnimatedWeatherIcon/**/*"],
   "compilerOptions": {
     "target": "es5",
     "declaration": true

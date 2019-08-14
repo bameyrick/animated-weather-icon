@@ -1,10 +1,10 @@
 import WeatherPartAbstract from './weather-part-abstract';
-import { WeatherTypes } from './weather-types';
+import { AnimatedWeatherTypes } from './weather-types';
 
 export default class RainAbstract extends WeatherPartAbstract {
-  protected lightTypes: WeatherTypes[] = [];
-  protected mediumTypes: WeatherTypes[] = [];
-  protected heavyTypes: WeatherTypes[] = [];
+  protected lightTypes: AnimatedWeatherTypes[] = [];
+  protected mediumTypes: AnimatedWeatherTypes[] = [];
+  protected heavyTypes: AnimatedWeatherTypes[] = [];
 
   protected drops: SVGPathElement[];
 

@@ -1,4 +1,4 @@
-export enum WeatherTypes {
+export enum AnimatedWeatherTypes {
   Clear = 'Clear',
   Overcast = 'Overcast',
   BrokenClouds = 'Broken Clouds',

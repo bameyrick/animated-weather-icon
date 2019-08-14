@@ -1,5 +1,5 @@
-import { WeatherTypes } from './weather-types';
-import { WeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
+import { AnimatedWeatherTimes } from './weather-times';
 import Sun from './sun';
 import CloudFull from './cloud-full';
 import CloudPartial from './cloud-partial';
@@ -14,12 +14,12 @@ import '../../scss/index.scss';
 
 const SVG = require('../../icon.svg');
 
-export { WeatherTypes } from './weather-types';
-export { WeatherTimes } from './weather-times';
+export { AnimatedWeatherTypes as WeatherTypes } from './weather-types';
+export { AnimatedWeatherTimes as WeatherTimes } from './weather-times';
 
-export class WeatherIcon {
-  private currentType: WeatherTypes;
-  private currentTime: WeatherTimes;
+export class AnimatedWeatherIcon {
+  private currentType: AnimatedWeatherTypes;
+  private currentTime: AnimatedWeatherTimes;
   private icon: HTMLElement;
   private sun: Sun;
   private cloudFull: CloudFull;
@@ -37,7 +37,7 @@ export class WeatherIcon {
 
   private initialiseIcon(): void {
     this.icon = document.createElement('div');
-    this.icon.classList.add('WeatherIcon');
+    this.icon.classList.add('AnimatedWeatherIcon');
     this.icon.innerHTML = SVG;
 
     this.context.appendChild(this.icon);
@@ -53,7 +53,7 @@ export class WeatherIcon {
     this.fog = new Fog(this.context);
   }
 
-  public setType(type: WeatherTypes, time: WeatherTimes = WeatherTimes.Day): Promise<void> {
+  public setType(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day): Promise<void> {
     return new Promise(async resolve => {
       if (this.currentType && this.currentTime && this.currentType !== this.currentType && this.currentTime !== time) {
         await this.unsetIcon();

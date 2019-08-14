@@ -1,13 +1,13 @@
-import { WeatherTypes } from './weather-types';
-import { WeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
+import { AnimatedWeatherTimes } from './weather-times';
 
 export default class WeatherPartAbstract {
   protected baseClass: string;
-  protected types: WeatherTypes[];
+  protected types: AnimatedWeatherTypes[];
   protected visible: boolean;
-  protected time: WeatherTimes;
+  protected time: AnimatedWeatherTimes;
   protected activationPaths: SVGPathElement[];
-  protected type: WeatherTypes;
+  protected type: AnimatedWeatherTypes;
 
   protected context: SVGElement;
   private paths: SVGPathElement[];
@@ -16,7 +16,7 @@ export default class WeatherPartAbstract {
     setTimeout(this.initialise.bind(this));
   }
 
-  public async show(type: WeatherTypes, time: WeatherTimes): Promise<void> {
+  public async show(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes): Promise<void> {
     if (this.types.includes(type) && !this.visible) {
       this.type = type;
       this.time = time;
@@ -27,7 +27,7 @@ export default class WeatherPartAbstract {
     }
   }
 
-  public async hide(type: WeatherTypes): Promise<void> {
+  public async hide(type: AnimatedWeatherTypes): Promise<void> {
     if (this.types.includes(type) && this.visible) {
       await this.renderOut();
 
@@ -67,6 +67,6 @@ export default class WeatherPartAbstract {
   }
 
   private activatePaths(): void {
-    this.activationPaths.forEach(path => path.classList.add('WeatherIcon__path--active'));
+    this.activationPaths.forEach(path => path.classList.add('AnimatedWeatherIcon__path--active'));
   }
 }

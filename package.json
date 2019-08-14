@@ -1,8 +1,8 @@
 {
-  "name": "weather-icon",
+  "name": "animated-weather-icon",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "types": "dist/WeatherIcon/index.js",
+  "types": "dist/AnimatedWeatherIcon/index.js",
   "author": "Ben Meyrick <bameyrick@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -33,7 +33,6 @@
     "circular-dependency-plugin": "^5.0.2",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
-    "declaration-bundler-webpack-plugin": "^1.0.3",
     "eslint": "^5.13.0",
     "eslint-cli": "^1.1.1",
     "eslint-config-prettier": "^4.0.0",
