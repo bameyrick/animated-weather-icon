@@ -152,4 +152,3 @@ async function myFunction() {
 
 myFunction();
 ```
-
