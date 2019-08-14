@@ -14,8 +14,8 @@ import '../../scss/index.scss';
 
 const SVG = require('../../icon.svg');
 
-export { AnimatedWeatherTypes as WeatherTypes } from './weather-types';
-export { AnimatedWeatherTimes as WeatherTimes } from './weather-times';
+export { AnimatedWeatherTypes } from './weather-types';
+export { AnimatedWeatherTimes } from './weather-times';
 
 export class AnimatedWeatherIcon {
   private currentType: AnimatedWeatherTypes;
