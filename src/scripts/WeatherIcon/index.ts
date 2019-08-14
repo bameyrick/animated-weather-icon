@@ -19,6 +19,7 @@ export { WeatherTimes } from './weather-times';
 
 export class WeatherIcon {
   private currentType: WeatherTypes;
+  private currentTime: WeatherTimes;
   private icon: HTMLElement;
   private sun: Sun;
   private cloudFull: CloudFull;
@@ -54,7 +55,12 @@ export class WeatherIcon {
 
   public setType(type: WeatherTypes, time: WeatherTimes = WeatherTimes.Day): Promise<void> {
     return new Promise(async resolve => {
+      if (this.currentType && this.currentTime && this.currentType !== this.currentType && this.currentTime !== time) {
+        await this.unsetIcon();
+      }
+
       this.currentType = type;
+      this.currentTime = time;
 
       await this.cloudFull.show(type, time);
       await this.cloudPartial.show(type, time);
@@ -65,6 +71,7 @@ export class WeatherIcon {
       await this.lightning.show(type, time);
       await this.sun.show(type, time);
       await this.fog.show(type, time);
+
       resolve();
     });
   }
