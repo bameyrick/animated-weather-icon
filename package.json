@@ -1,6 +1,8 @@
 {
   "name": "animated-weather-icon",
   "version": "1.0.0",
+  "description": "Add an animated weather icon to a render target",
+  "keywords": ["animated weather icon", "weather", "animated", "icon", "typescript"],
   "main": "dist/index.js",
   "types": "dist/AnimatedWeatherIcon/index.js",
   "author": "Ben Meyrick <bameyrick@gmail.com>",
