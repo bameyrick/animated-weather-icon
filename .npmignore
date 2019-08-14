@@ -1,0 +1,4 @@
+*
+!/dist/AnimatedWeatherIcon/**/*
+!/package.json
+!/LICENSE
