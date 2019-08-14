@@ -1,6 +1,6 @@
 # Animated Weather Icon
 
-Preview: https://animated-weather-icon.netlify.com/
+Demo: https://animated-weather-icon.netlify.com/
 
 ## Install
 
