@@ -10,7 +10,7 @@
   "scripts": {
     "start": "yarn tidy-clean && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
     "build": "yarn tidy-clean && webpack --config webpack.prod.babel.js",
-    "npm-bundle": "yarn tidy-clean && webpack --config webpack.npm.babel.js",
+    "npm-bundle": "yarn tidy-clean && webpack --config webpack.npm.babel.js && rm -rf ./dist/example.d.ts",
     "tidy-clean": "rm -rf ./build ./dist",
     "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn"
   },
