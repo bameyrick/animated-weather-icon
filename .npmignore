@@ -1,5 +1,5 @@
 *
 !/dist/**/*
-/dist/example.js
+/dist/exaple.js
 !/package.json
 !/LICENSE
