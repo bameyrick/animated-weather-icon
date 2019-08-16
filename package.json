@@ -12,7 +12,8 @@
     "build": "yarn tidy-clean && webpack --config webpack.prod.babel.js",
     "npm-bundle": "yarn tidy-clean && webpack --config webpack.npm.babel.js",
     "tidy-clean": "rm -rf ./build ./dist",
-    "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn"
+    "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn",
+    "check-package": "tar tvf $(npm pack)"
   },
   "husky": {
     "hooks": {
