@@ -6,6 +6,10 @@
   "main": "dist/index.js",
   "types": "dist/AnimatedWeatherIcon/index.js",
   "author": "Ben Meyrick <bameyrick@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bameyrick/animated-weather-icon"
+  },
   "license": "MIT",
   "scripts": {
     "start": "yarn tidy-clean && webpack-dev-server --host 0.0.0.0 --port 3000 --watch --config webpack.dev.babel.js",
