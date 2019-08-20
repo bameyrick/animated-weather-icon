@@ -2,13 +2,12 @@
 
 Demo: <https://animated-weather-icon.netlify.com/>
 
-[![GitHub release](https://img.shields.io/github/release/bameyrick/weather-icon.svg)](https://github.com/bameyrick/weather-icon/releases)
-[![Travis tests](https://img.shields.io/travis/bameyrick/weather-icon.svg)](https://travis-ci.org/bameyrick/weather-icon)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a28e8cbf2ce44049ad20da76b1f68e3)](https://www.codacy.com/app/bameyrick/weather-icon)
-[![GitHub issues](https://img.shields.io/github/issues/bameyrick/weather-icon)](https://github.com/bameyrick/weather-icon/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bameyrick/weather-icon.svg)](https://github.com/bameyrick/weather-icon/pulls)
-[![Github last commit](https://img.shields.io/github/last-commit/bameyrick/weather-icon.svg)](https://github.com/bameyrick/weather-icon/commits)
-[![Github contributors](https://img.shields.io/github/contributors/bameyrick/weather-icon.svg)](https://github.com/ONSdigital/design-system/graphs/contributors)
+[![GitHub release](https://img.shields.io/github/release/bameyrick/animated-weather-icon.svg)](https://github.com/bameyrick/animated-weather-icon/releases)
+[![Travis tests](https://img.shields.io/travis/bameyrick/animated-weather-icon.svg)](https://travis-ci.org/bameyrick/animated-weather-icon)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a28e8cbf2ce44049ad20da76b1f68e3)](https://www.codacy.com/app/bameyrick/animated-weather-icon)
+[![GitHub issues](https://img.shields.io/github/issues/bameyrick/animated-weather-icon)](https://github.com/bameyrick/animated-weather-icon/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bameyrick/animated-weather-icon.svg)](https://github.com/bameyrick/animated-weather-icon/pulls)
+[![Github last commit](https://img.shields.io/github/last-commit/bameyrick/animated-weather-icon.svg)](https://github.com/bameyrick/animated-weather-icon/commits)
 
 ## Install
 
