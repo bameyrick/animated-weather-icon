@@ -4,7 +4,6 @@
   &__bar {
     fill: $light-grey;
     fill-opacity: 0;
-
     transition: fill-opacity 0.5s ease-in-out;
 
     &--animate {

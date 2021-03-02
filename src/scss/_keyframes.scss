@@ -102,12 +102,12 @@ $ray-move-amount: 2.5%;
 @keyframes weather-fade-in-out {
   0%,
   100% {
-    fill-opacity: 0;
     stroke-opacity: 0;
+    fill-opacity: 0;
   }
   50% {
-    fill-opacity: 1;
     stroke-opacity: 1;
+    fill-opacity: 1;
   }
 }
 
@@ -237,8 +237,8 @@ $weather-animation-t: 0;
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
-      transform: translateY($eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25)
-        translateX(0.15% * ($weather-animation-i - 50));
+      $size: $weather-animation-size * 0.25;
+      transform: translateY($eq * -($size) + $size) translateX(0.15% * ($weather-animation-i - 50));
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
