@@ -181,6 +181,7 @@ $weather-animation-t: 0;
       $eq: sin($weather-animation-t) / 2;
       $x: -0.3% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
 
@@ -201,6 +202,7 @@ $weather-animation-t: 0;
       $eq: sin($weather-animation-t) / 2;
       $x: 0.3% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -220,6 +222,7 @@ $weather-animation-t: 0;
       $eq: sin($weather-animation-t) / 2;
       $x: -0.15% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -238,6 +241,7 @@ $weather-animation-t: 0;
     #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
       $size: $weather-animation-size * 0.25;
+
       transform: translateY($eq * -($size) + $size) translateX(0.15% * ($weather-animation-i - 50));
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -254,6 +258,7 @@ $weather-animation-t: 0;
       $eq: sin($weather-animation-t);
       $x: -$eq * ($weather-animation-i - 50) * 1% / 4;
       $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
@@ -270,6 +275,7 @@ $weather-animation-t: 0;
       $eq: sin($weather-animation-t);
       $x: $eq * ($weather-animation-i - 50) * 1% / 4;
       $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
