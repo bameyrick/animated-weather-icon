@@ -1,5 +1,4 @@
-
-$sun-small-scale: .75;
+$sun-small-scale: 0.75;
 
 .Sun {
   $c: &;
@@ -17,10 +16,9 @@ $sun-small-scale: .75;
 
   &__circle {
     fill: $white;
-
-    transition: transform .5s $ease-out-quart;
+    transition: transform 0.5s $ease-out-quart;
   }
-  
+
   &__rays {
     transform-origin: 50%;
 
@@ -30,7 +28,7 @@ $sun-small-scale: .75;
   }
 
   &__ray {
-    transition: transform .5s $ease-out-quart;
+    transition: transform 0.5s $ease-out-quart;
   }
 
   @for $i from 1 through 8 {
@@ -41,13 +39,9 @@ $sun-small-scale: .75;
 
   &__night {
     transform-origin: 50%;
-
     fill: $light-grey;
-
     opacity: 0;
-
-    transition: opacity .5s $ease-out-quart;
-
+    transition: opacity 0.5s $ease-out-quart;
     animation: weather-rock 5s infinite;
 
     &--animate {

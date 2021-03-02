@@ -59,7 +59,7 @@ $ray-move-amount: 2.5%;
   }
 }
 
-@keyframes weather-ray5{
+@keyframes weather-ray5 {
   0%,
   100% {
     transform: translate(0);
@@ -81,7 +81,7 @@ $ray-move-amount: 2.5%;
 
 @keyframes weather-ray7 {
   0%,
-  100%{
+  100% {
     transform: translate(0);
   }
   50% {
@@ -91,7 +91,7 @@ $ray-move-amount: 2.5%;
 
 @keyframes weather-ray8 {
   0%,
-  100%{
+  100% {
     transform: translate(0);
   }
   50% {
@@ -102,12 +102,12 @@ $ray-move-amount: 2.5%;
 @keyframes weather-fade-in-out {
   0%,
   100% {
-    fill-opacity: 0;
     stroke-opacity: 0;
+    fill-opacity: 0;
   }
   50% {
-    fill-opacity: 1;
     stroke-opacity: 1;
+    fill-opacity: 1;
   }
 }
 
@@ -177,10 +177,11 @@ $weather-animation-t: 0;
     transform: translate(0);
   }
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
       $x: -0.3% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
 
@@ -197,10 +198,11 @@ $weather-animation-t: 0;
     transform: translate(0);
   }
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
       $x: 0.3% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -216,10 +218,11 @@ $weather-animation-t: 0;
     transform: translate(0);
   }
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
       $x: -0.15% * ($weather-animation-i - 50);
       $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -235,9 +238,11 @@ $weather-animation-t: 0;
     transform: translate(0);
   }
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t) / 2;
-      transform: translateY($eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25) translateX(0.15% * ($weather-animation-i - 50));
+      $size: $weather-animation-size * 0.25;
+
+      transform: translateY($eq * -($size) + $size) translateX(0.15% * ($weather-animation-i - 50));
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
@@ -249,10 +254,11 @@ $weather-animation-t: 0;
 
 @keyframes weather-snow {
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t);
       $x: -$eq * ($weather-animation-i - 50) * 1% / 4;
       $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
@@ -265,10 +271,11 @@ $weather-animation-t: 0;
 
 @keyframes weather-snow-2 {
   @while $weather-animation-i <= 100 {
-    #{$weather-animation-i}% {
+    #{$weather-animation-i * 1%} {
       $eq: sin($weather-animation-t);
       $x: $eq * ($weather-animation-i - 50) * 1% / 4;
       $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
+
       transform: translate($x, $y);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
@@ -279,7 +286,7 @@ $weather-animation-t: 0;
 @keyframes weather-fog {
   0% {
     transform: translate(0);
-    fill-opacity: .5;
+    fill-opacity: 0.5;
   }
   25% {
     transform: translateX(1%);
@@ -292,7 +299,7 @@ $weather-animation-t: 0;
   }
   100% {
     transform: translate(0);
-    fill-opacity: .5;
+    fill-opacity: 0.5;
   }
 }
 

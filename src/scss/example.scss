@@ -14,14 +14,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 50vw;
   max-width: 60vh;
 
   &__options {
     padding: 10px;
     border: 2px solid $light-grey;
-
     font-family: Helvetica, Arial, sans-serif;
   }
 
@@ -35,6 +33,6 @@ body {
 
   &__label {
     display: block;
-    margin: 0 0 .25em;
+    margin: 0 0 0.25em;
   }
 }
