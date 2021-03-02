@@ -62,7 +62,7 @@ export default class WeatherPartAbstract {
       const length = path.getTotalLength().toString();
 
       path.style.strokeDasharray = length;
-      path.style.strokeDashoffset = `-${length}`;
+      path.style.strokeDashoffset = length;
     });
   }
 
