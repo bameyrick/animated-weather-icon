@@ -5,10 +5,10 @@
     fill: $light-grey;
     fill-opacity: 0;
 
-    transition: fill-opacity .5s ease-in-out;
+    transition: fill-opacity 0.5s ease-in-out;
 
     &--animate {
-      fill-opacity: .5;
+      fill-opacity: 0.5;
 
       animation: {
         name: weather-fog;
@@ -19,7 +19,7 @@
 
       @for $i from 1 through 7 {
         &:nth-child(#{$i}) {
-          animation-delay: .5s * $i;
+          animation-delay: 0.5s * $i;
         }
       }
     }
