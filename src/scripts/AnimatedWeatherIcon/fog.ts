@@ -1,6 +1,6 @@
+import { delay } from '@qntm-code/utils';
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
-import { delay } from 'q';
 
 export default class Fog extends WeatherPartAbstract {
   protected baseClass: string = 'Fog';

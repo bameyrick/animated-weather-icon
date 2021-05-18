@@ -1,8 +1,7 @@
+import { delay, asyncForEach } from '@qntm-code/utils';
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
 import { AnimatedWeatherTimes } from './weather-times';
-import asyncForEach from './asyncForEach';
-import delay from './delay';
 
 const sunRayDelay = 50;
 

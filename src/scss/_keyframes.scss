@@ -172,17 +172,21 @@ $weather-animation-size: 70%;
 $weather-animation-i: 51;
 $weather-animation-t: 0;
 
+@function hail($x-multiplier, $weather-animation-t, $weather-animation-i) {
+  $eq: sin($weather-animation-t) / 2;
+  $x: $x-multiplier * ($weather-animation-i - 50);
+  $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
+
+  @return translate($x, $y);
+}
+
 @keyframes weather-hail-left {
   0% {
     transform: translate(0);
   }
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t) / 2;
-      $x: -0.3% * ($weather-animation-i - 50);
-      $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
-
-      transform: translate($x, $y);
+      transform: hail(-0.3%, $weather-animation-t, $weather-animation-i);
     }
 
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
@@ -199,12 +203,9 @@ $weather-animation-t: 0;
   }
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t) / 2;
-      $x: 0.3% * ($weather-animation-i - 50);
-      $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
-
-      transform: translate($x, $y);
+      transform: hail(0.3%, $weather-animation-t, $weather-animation-i);
     }
+
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
   }
@@ -219,12 +220,9 @@ $weather-animation-t: 0;
   }
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t) / 2;
-      $x: -0.15% * ($weather-animation-i - 50);
-      $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
-
-      transform: translate($x, $y);
+      transform: hail(-0.15%, $weather-animation-t, $weather-animation-i);
     }
+
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
   }
@@ -239,11 +237,9 @@ $weather-animation-t: 0;
   }
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t) / 2;
-      $size: $weather-animation-size * 0.25;
-
-      transform: translateY($eq * -($size) + $size) translateX(0.15% * ($weather-animation-i - 50));
+      transform: hail(0.15%, $weather-animation-t, $weather-animation-i);
     }
+
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step * 2;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
   }
@@ -252,15 +248,20 @@ $weather-animation-t: 0;
 $weather-animation-i: 0;
 $weather-animation-t: 0;
 
+@function snow($multiplier, $weather-animation-t, $weather-animation-i) {
+  $eq: sin($weather-animation-t);
+  $x: $eq * $multiplier * ($weather-animation-i - 50) * 1% / 4;
+  $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
+
+  @return translate($x, $y);
+}
+
 @keyframes weather-snow {
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t);
-      $x: -$eq * ($weather-animation-i - 50) * 1% / 4;
-      $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
-
-      transform: translate($x, $y);
+      transform: snow(-1, $weather-animation-t, $weather-animation-i);
     }
+
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
   }
@@ -272,11 +273,7 @@ $weather-animation-t: 0;
 @keyframes weather-snow-2 {
   @while $weather-animation-i <= 100 {
     #{$weather-animation-i * 1%} {
-      $eq: sin($weather-animation-t);
-      $x: $eq * ($weather-animation-i - 50) * 1% / 4;
-      $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
-
-      transform: translate($x, $y);
+      transform: snow(1, $weather-animation-t, $weather-animation-i);
     }
     $weather-animation-t: $weather-animation-t + $weather-animation-increase * $weather-animation-step;
     $weather-animation-i: $weather-animation-i + $weather-animation-step;
