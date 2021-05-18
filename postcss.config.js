@@ -12,9 +12,7 @@ export default () => {
     autoprefixer: false,
     safe: true,
     mergeLonghand: false,
-    discardComments: {
-      removeAll: true
-    }
+    reduceTransforms: false,
   };
 
   return [
@@ -39,10 +37,10 @@ export default () => {
           console.log('3', `/${BASE_HREF}/${DEPLOY_URL}/${url}`.replace(/\/\/+/g, '/'));
           return `/${BASE_HREF}/${DEPLOY_URL}/${url}`.replace(/\/\/+/g, '/');
         }
-      }
+      },
     }),
     autoprefixer(),
     mqoptimize(),
-    cssnano(minimizeOptions)
+    cssnano({ preset: ['default', minimizeOptions] }),
   ];
 };

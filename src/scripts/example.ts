@@ -6,6 +6,8 @@ class Example {
   private icon: AnimatedWeatherIcon;
   private typesSelect: HTMLSelectElement;
   private timesSelect: HTMLSelectElement;
+  private readonly localStorageTypeKey: string = 'weather-type';
+  private readonly localStorageTimeKey: string = 'weather-time';
 
   constructor() {
     this.icon = new AnimatedWeatherIcon(<HTMLElement>document.querySelector('.js-placeholder'));
@@ -14,6 +16,18 @@ class Example {
 
     this.setTypes();
     this.setTimes();
+
+    const storedType = localStorage.getItem(this.localStorageTypeKey);
+
+    if (storedType) {
+      this.typesSelect.value = storedType;
+    }
+
+    const storedTime = localStorage.getItem(this.localStorageTimeKey);
+
+    if (storedTime) {
+      this.timesSelect.value = storedTime;
+    }
 
     this.typesSelect.addEventListener('change', this.updateIcon.bind(this));
     this.timesSelect.addEventListener('change', this.updateIcon.bind(this));
@@ -38,6 +52,9 @@ class Example {
   private async updateIcon(): Promise<void> {
     this.typesSelect.setAttribute('disabled', '');
     this.timesSelect.setAttribute('disabled', '');
+
+    localStorage.setItem(this.localStorageTypeKey, this.typesSelect.value);
+    localStorage.setItem(this.localStorageTimeKey, this.timesSelect.value);
 
     await this.icon.unsetIcon();
     await this.icon.setType(<AnimatedWeatherTypes>this.typesSelect.value, <AnimatedWeatherTimes>this.timesSelect.value);
