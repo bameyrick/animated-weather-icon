@@ -23,13 +23,19 @@ export default class Sun extends WeatherPartAbstract {
     AnimatedWeatherTypes.SleetShowers,
   ];
 
+  protected types = [AnimatedWeatherTypes.Clear, ...this.smallTypes];
+
   private circle: SVGPathElement;
   private raysContainer: SVGElement;
   private rays: SVGPathElement[];
   private moon: SVGPathElement;
 
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
+
   protected getElements(): void {
-    this.types = [AnimatedWeatherTypes.Clear, ...this.smallTypes];
     this.circle = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__circle`);
     this.raysContainer = <SVGElement>this.context.querySelector(`.${this.baseClass}__rays`);
     this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__ray`))];

@@ -8,6 +8,11 @@ export default class Fog extends WeatherPartAbstract {
 
   private fogBars: SVGPathElement[];
 
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
+
   protected getElements(): void {
     this.fogBars = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__bar`))];
 

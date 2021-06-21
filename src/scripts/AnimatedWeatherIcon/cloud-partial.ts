@@ -33,4 +33,9 @@ export default class CloudFull extends CloudAbstract {
     AnimatedWeatherTypes.SnowShowers,
     AnimatedWeatherTypes.HeavySnowShowers,
   ];
+
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
 }

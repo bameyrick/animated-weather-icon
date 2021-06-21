@@ -29,10 +29,10 @@ class Example {
       this.timesSelect.value = storedTime;
     }
 
-    this.typesSelect.addEventListener('change', this.updateIcon.bind(this));
-    this.timesSelect.addEventListener('change', this.updateIcon.bind(this));
+    this.typesSelect.addEventListener('change', () => this.updateIcon());
+    this.timesSelect.addEventListener('change', () => this.updateIcon());
 
-    setTimeout(this.updateIcon.bind(this), 10);
+    this.updateIcon();
   }
 
   private setTypes(): void {

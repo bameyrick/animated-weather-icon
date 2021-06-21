@@ -7,6 +7,11 @@ export default class Hail extends WeatherPartAbstract {
 
   private drops: SVGPathElement[];
 
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
+
   protected getElements(): void {
     this.drops = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
 
