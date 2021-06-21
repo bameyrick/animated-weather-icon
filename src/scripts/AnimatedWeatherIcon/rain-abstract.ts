@@ -1,15 +1,19 @@
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
 
-export default class RainAbstract extends WeatherPartAbstract {
-  protected lightTypes: AnimatedWeatherTypes[] = [];
-  protected mediumTypes: AnimatedWeatherTypes[] = [];
-  protected heavyTypes: AnimatedWeatherTypes[] = [];
-
+export default abstract class RainAbstract extends WeatherPartAbstract {
+  protected abstract lightTypes: AnimatedWeatherTypes[];
+  protected abstract mediumTypes: AnimatedWeatherTypes[];
+  protected abstract heavyTypes: AnimatedWeatherTypes[];
   protected drops: SVGPathElement[];
 
-  protected getElements(): void {
+  protected initialise(): void {
     this.types = [...this.lightTypes, ...this.mediumTypes, ...this.heavyTypes];
+
+    super.initialise();
+  }
+
+  protected getElements(): void {
     this.drops = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
 
     this.activationPaths = this.drops;

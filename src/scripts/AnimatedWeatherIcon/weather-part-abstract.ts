@@ -1,7 +1,7 @@
 import { AnimatedWeatherTypes } from './weather-types';
 import { AnimatedWeatherTimes } from './weather-times';
 
-export default class WeatherPartAbstract {
+export default abstract class WeatherPartAbstract {
   protected baseClass: string;
   protected types: AnimatedWeatherTypes[];
   protected visible: boolean;
@@ -35,13 +35,13 @@ export default class WeatherPartAbstract {
     }
   }
 
-  protected getElements(): void {}
+  protected abstract getElements(): void;
 
-  protected async renderIn(): Promise<void> {}
+  protected abstract renderIn(): Promise<void>;
 
-  protected async renderOut(): Promise<void> {}
+  protected abstract renderOut(): Promise<void>;
 
-  private initialise(): void {
+  protected initialise(): void {
     this.getContext();
     this.getPaths();
     this.setOffsets();
