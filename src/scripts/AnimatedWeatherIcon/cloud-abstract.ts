@@ -1,7 +1,7 @@
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
 
-export default class CloudAbstract extends WeatherPartAbstract {
+export default abstract class CloudAbstract extends WeatherPartAbstract {
   protected baseClass: string = 'Cloud';
   protected typeClass: string;
 

@@ -11,4 +11,10 @@ export default class Snow extends RainAbstract {
     AnimatedWeatherTypes.Sleet,
     AnimatedWeatherTypes.SleetShowers,
   ];
+  protected types = [...this.lightTypes, ...this.mediumTypes, ...this.heavyTypes];
+
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
 }

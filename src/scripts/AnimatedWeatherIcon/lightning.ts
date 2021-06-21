@@ -3,6 +3,7 @@ import { AnimatedWeatherTypes } from './weather-types';
 
 export default class Lightning extends WeatherPartAbstract {
   protected baseClass: string = 'Lightning';
+
   protected types: AnimatedWeatherTypes[] = [
     AnimatedWeatherTypes.ThunderStorm,
     AnimatedWeatherTypes.ThunderStormLightRain,
@@ -14,6 +15,11 @@ export default class Lightning extends WeatherPartAbstract {
   ];
 
   private lightningPath: SVGPathElement;
+
+  constructor(protected iconContext: HTMLElement) {
+    super();
+    this.initialise();
+  }
 
   protected getElements(): void {
     this.lightningPath = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__path`);

@@ -2,8 +2,9 @@ import { AnimatedWeatherTypes } from './weather-types';
 import { AnimatedWeatherTimes } from './weather-times';
 
 export default abstract class WeatherPartAbstract {
-  protected baseClass: string;
-  protected types: AnimatedWeatherTypes[];
+  protected abstract iconContext: HTMLElement;
+  protected abstract baseClass: string;
+  protected abstract types: AnimatedWeatherTypes[];
   protected visible: boolean;
   protected time: AnimatedWeatherTimes;
   protected activationPaths: SVGPathElement[];
@@ -11,10 +12,6 @@ export default abstract class WeatherPartAbstract {
 
   protected context: SVGElement;
   private paths: SVGPathElement[];
-
-  constructor(private iconContext: HTMLElement) {
-    setTimeout(this.initialise.bind(this));
-  }
 
   public async show(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes): Promise<void> {
     if (this.types.includes(type) && !this.visible) {
