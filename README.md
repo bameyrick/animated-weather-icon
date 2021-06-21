@@ -3,7 +3,7 @@
 Demo: <https://animated-weather-icon.netlify.com/>
 
 [![GitHub release](https://img.shields.io/github/release/bameyrick/animated-weather-icon.svg)](https://github.com/bameyrick/animated-weather-icon/releases)
-[![Travis tests](https://img.shields.io/travis/bameyrick/animated-weather-icon.svg)](https://travis-ci.org/bameyrick/animated-weather-icon)
+[![Travis tests](https://img.shields.io/travis/bameyrick/animated-weather-icon.svg)](https://travis-ci.com/bameyrick/animated-weather-icon)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a28e8cbf2ce44049ad20da76b1f68e3)](https://www.codacy.com/app/bameyrick/animated-weather-icon)
 [![GitHub issues](https://img.shields.io/github/issues/bameyrick/animated-weather-icon)](https://github.com/bameyrick/animated-weather-icon/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bameyrick/animated-weather-icon.svg)](https://github.com/bameyrick/animated-weather-icon/pulls)
@@ -120,13 +120,13 @@ In this example we will wrap our calls in an async function so we can use await 
 import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 'animated-weather-icon';
 
 async function myFunction() {
-    const icon = new AnimatedWeatherIcon(renderTarget);
+  const icon = new AnimatedWeatherIcon(renderTarget);
 
-    await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
+  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
 
-    setTimeout(() => {
-        icon.unsetIcon();
-    }, 2000);
+  setTimeout(() => {
+    icon.unsetIcon();
+  }, 2000);
 }
 
 myFunction();
@@ -140,13 +140,13 @@ You can change the weather type after it has been set, as if the icon knows it a
 import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 'animated-weather-icon';
 
 async function myFunction() {
-    const icon = new AnimatedWeatherIcon(renderTarget);
+  const icon = new AnimatedWeatherIcon(renderTarget);
 
-    await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
+  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
 
-    setTimeout(() => {
-        icon.setType(AnimatedWeatherTypes.Overcast, AnimatedWeatherTimes.Day);
-    }, 2000);
+  setTimeout(() => {
+    icon.setType(AnimatedWeatherTypes.Overcast, AnimatedWeatherTimes.Day);
+  }, 2000);
 }
 
 myFunction();
