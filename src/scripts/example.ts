@@ -56,7 +56,6 @@ class Example {
     localStorage.setItem(this.localStorageTypeKey, this.typesSelect.value);
     localStorage.setItem(this.localStorageTimeKey, this.timesSelect.value);
 
-    await this.icon.unsetIcon();
     await this.icon.setType(<AnimatedWeatherTypes>this.typesSelect.value, <AnimatedWeatherTimes>this.timesSelect.value);
 
     this.typesSelect.removeAttribute('disabled');
