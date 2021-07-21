@@ -55,7 +55,7 @@ export class AnimatedWeatherIcon {
 
   public setType(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day): Promise<void> {
     return new Promise(async resolve => {
-      if (this.currentType && this.currentTime && this.currentType !== this.currentType && this.currentTime !== time) {
+      if (this.currentType && this.currentTime && (this.currentType !== type || this.currentTime !== time)) {
         await this.unsetIcon();
       }
 
