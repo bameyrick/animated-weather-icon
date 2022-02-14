@@ -49,7 +49,7 @@
     "husky": "^1.3.1",
     "lint-staged": "^8.1.3",
     "mathsass": "^0.10.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^3.0.0",
     "postcss-mq-optimize": "^1.1.0",
     "postcss-url": "^8.0.0",
