@@ -14,7 +14,7 @@ export default class Fog extends WeatherPartAbstract {
   }
 
   protected getElements(): void {
-    this.fogBars = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__bar`))];
+    this.fogBars = [...(<never>this.context.querySelectorAll(`.${this.baseClass}__bar`))];
 
     this.activationPaths = this.fogBars;
   }
@@ -28,7 +28,7 @@ export default class Fog extends WeatherPartAbstract {
   }
 
   private async render(animateIn: boolean = true): Promise<void> {
-    this.fogBars.forEach(bar => bar.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__bar--animate`));
+    this.fogBars.forEach((bar) => bar.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__bar--animate`));
 
     await delay(500);
   }

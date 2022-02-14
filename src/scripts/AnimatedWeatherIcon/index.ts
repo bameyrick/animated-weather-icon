@@ -12,7 +12,8 @@ import Fog from './fog';
 
 import '../../scss/index.scss';
 
-const SVG = require('../../icon.svg');
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
+const SVG: string = require('../../icon.svg');
 
 export { AnimatedWeatherTypes } from './weather-types';
 export { AnimatedWeatherTimes } from './weather-times';
@@ -53,42 +54,34 @@ export class AnimatedWeatherIcon {
     this.fog = new Fog(this.context);
   }
 
-  public setType(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day): Promise<void> {
-    return new Promise(async resolve => {
-      if (this.currentType && this.currentTime && (this.currentType !== type || this.currentTime !== time)) {
-        await this.unsetIcon();
-      }
+  public async setType(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day): Promise<void> {
+    if (this.currentType && this.currentTime && (this.currentType !== type || this.currentTime !== time)) {
+      await this.unsetIcon();
+    }
 
-      this.currentType = type;
-      this.currentTime = time;
+    this.currentType = type;
+    this.currentTime = time;
 
-      await this.cloudFull.show(type, time);
-      await this.cloudPartial.show(type, time);
-      await this.rain.show(type, time);
-      await this.drizzle.show(type, time);
-      await this.snow.show(type, time);
-      await this.hail.show(type, time);
-      await this.lightning.show(type, time);
-      await this.sun.show(type, time);
-      await this.fog.show(type, time);
-
-      resolve();
-    });
+    await this.cloudFull.show(type, time);
+    await this.cloudPartial.show(type, time);
+    await this.rain.show(type, time);
+    await this.drizzle.show(type, time);
+    await this.snow.show(type, time);
+    await this.hail.show(type, time);
+    await this.lightning.show(type, time);
+    await this.sun.show(type, time);
+    await this.fog.show(type, time);
   }
 
-  public unsetIcon(): Promise<void> {
-    return new Promise(async resolve => {
-      await this.sun.hide(this.currentType);
-      await this.lightning.hide(this.currentType);
-      await this.rain.hide(this.currentType);
-      await this.drizzle.hide(this.currentType);
-      await this.snow.hide(this.currentType);
-      await this.hail.hide(this.currentType);
-      await this.cloudFull.hide(this.currentType);
-      await this.cloudPartial.hide(this.currentType);
-      await this.fog.hide(this.currentType);
-
-      resolve();
-    });
+  public async unsetIcon(): Promise<void> {
+    await this.sun.hide(this.currentType);
+    await this.lightning.hide(this.currentType);
+    await this.rain.hide(this.currentType);
+    await this.drizzle.hide(this.currentType);
+    await this.snow.hide(this.currentType);
+    await this.hail.hide(this.currentType);
+    await this.cloudFull.hide(this.currentType);
+    await this.cloudPartial.hide(this.currentType);
+    await this.fog.hide(this.currentType);
   }
 }

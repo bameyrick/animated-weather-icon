@@ -38,7 +38,7 @@ export default class Sun extends WeatherPartAbstract {
   protected getElements(): void {
     this.circle = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__circle`);
     this.raysContainer = <SVGElement>this.context.querySelector(`.${this.baseClass}__rays`);
-    this.rays = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__ray`))];
+    this.rays = <SVGPathElement[]>[...(<never>this.context.querySelectorAll(`.${this.baseClass}__ray`))];
     this.moon = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__night`);
 
     this.activationPaths = [this.circle, ...this.rays, this.moon];
@@ -102,8 +102,8 @@ export default class Sun extends WeatherPartAbstract {
     const setter = animateIn ? 'add' : 'remove';
     const rays = animateIn ? this.rays : this.rays.reverse();
 
-    await asyncForEach(rays, ray => {
-      return new Promise<void>(resolve => {
+    await asyncForEach(rays, (ray) => {
+      return new Promise<void>((resolve) => {
         setTimeout(() => {
           ray.classList[setter](cls);
 
@@ -115,7 +115,7 @@ export default class Sun extends WeatherPartAbstract {
 
   private async renderInMoon(): Promise<void> {
     this.context.classList.add(`${this.baseClass}--night`);
-    this.setSmallClass(true);
+    void this.setSmallClass(true);
     this.moon.classList.add(`${this.baseClass}__night--animate`);
 
     await delay(500);
@@ -125,6 +125,6 @@ export default class Sun extends WeatherPartAbstract {
     this.moon.classList.remove(`${this.baseClass}__night--animate`);
     await delay(500);
     this.context.classList.remove(`${this.baseClass}--night`);
-    this.setSmallClass(false);
+    void this.setSmallClass(false);
   }
 }

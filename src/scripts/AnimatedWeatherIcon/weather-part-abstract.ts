@@ -51,11 +51,11 @@ export default abstract class WeatherPartAbstract {
   }
 
   private getPaths(): void {
-    this.paths = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__path`))];
+    this.paths = <SVGPathElement[]>[...(<never>this.context.querySelectorAll(`.${this.baseClass}__path`))];
   }
 
   private setOffsets(): void {
-    this.paths.forEach(path => {
+    this.paths.forEach((path) => {
       const length = path.getTotalLength().toString();
 
       path.style.strokeDasharray = length;
@@ -64,6 +64,6 @@ export default abstract class WeatherPartAbstract {
   }
 
   private activatePaths(): void {
-    this.activationPaths.forEach(path => path.classList.add('AnimatedWeatherIcon__path--active'));
+    this.activationPaths.forEach((path) => path.classList.add('AnimatedWeatherIcon__path--active'));
   }
 }

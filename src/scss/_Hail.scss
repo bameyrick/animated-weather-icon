@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .Hail {
   transform: translateY(5%);
 
@@ -40,7 +42,7 @@
 
       @for $i from 1 through 6 {
         &:nth-child(#{$i}) {
-          animation-delay: 1s * (1 / 6 * $i - 1 / 6);
+          animation-delay: 1s * (math.div(1, 6) * $i - math.div(1, 6));
         }
       }
     }

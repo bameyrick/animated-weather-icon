@@ -13,7 +13,7 @@ export default class Hail extends WeatherPartAbstract {
   }
 
   protected getElements(): void {
-    this.drops = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
+    this.drops = [...(<never>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
 
     this.activationPaths = this.drops;
   }
@@ -26,7 +26,8 @@ export default class Hail extends WeatherPartAbstract {
     return this.render(false);
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   private async render(animateIn: boolean = true): Promise<void> {
-    this.drops.forEach(drop => drop.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__drop--animate`));
+    this.drops.forEach((drop) => drop.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__drop--animate`));
   }
 }

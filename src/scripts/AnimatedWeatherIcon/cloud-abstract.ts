@@ -1,3 +1,4 @@
+import { delay } from '@qntm-code/utils';
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
 
@@ -17,26 +18,20 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
     this.activationPaths = [];
   }
 
-  protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      await this.setClasses();
+  protected async renderIn(): Promise<void> {
+    await this.setClasses();
 
-      this.path.style.strokeDashoffset = '0';
+    this.path.style.strokeDashoffset = '0';
 
-      setTimeout(resolve, this.animationDuration);
-    });
+    await delay(this.animationDuration);
   }
 
-  protected renderOut(): Promise<void> {
-    return new Promise(async resolve => {
-      this.path.style.strokeDashoffset = this.dashArrayOffset;
+  protected async renderOut(): Promise<void> {
+    this.path.style.strokeDashoffset = this.dashArrayOffset;
 
-      setTimeout(() => {
-        this.setClasses(true);
+    await delay(this.animationDuration);
 
-        resolve();
-      }, this.animationDuration);
-    });
+    void this.setClasses(true);
   }
 
   private getColourModifier(): string {
@@ -71,7 +66,7 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
   }
 
   private setClasses(remove: boolean = false): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const operator = remove ? 'remove' : 'add';
 
       this.path.classList[operator](`${this.baseClass}__path--active`, `${this.baseClass}__path--${this.getColourModifier()}`);
