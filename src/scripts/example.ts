@@ -1,6 +1,7 @@
 import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from './AnimatedWeatherIcon';
 
 import '../scss/example.scss';
+import { Dictionary } from '@qntm-code/utils';
 
 class Example {
   private icon: AnimatedWeatherIcon;
@@ -29,10 +30,10 @@ class Example {
       this.timesSelect.value = storedTime;
     }
 
-    this.typesSelect.addEventListener('change', () => this.updateIcon());
-    this.timesSelect.addEventListener('change', () => this.updateIcon());
+    this.typesSelect.addEventListener('change', () => void this.updateIcon());
+    this.timesSelect.addEventListener('change', () => void this.updateIcon());
 
-    this.updateIcon();
+    void this.updateIcon();
   }
 
   private setTypes(): void {
@@ -44,7 +45,10 @@ class Example {
   }
 
   private setOptions(type: typeof AnimatedWeatherTypes | typeof AnimatedWeatherTimes, select: HTMLSelectElement): void {
-    const options = Object.keys(type).map(key => `<option value="${type[key]}">${type[key]}</option>`);
+    const options = Object.keys(type).map(key => {
+      const value = (type as unknown as Dictionary<string>)[key];
+      return `<option value="${value}}">${value}</option>`;
+    });
 
     select.innerHTML = options.join('');
   }

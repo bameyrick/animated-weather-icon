@@ -1,13 +1,12 @@
-
 import * as path from 'path';
 
-import { NoEmitOnErrorsPlugin, ProgressPlugin, NamedModulesPlugin } from 'webpack';
+import { NoEmitOnErrorsPlugin, ProgressPlugin } from 'webpack';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
-import FixStyleOnlyEntriesPlugin from 'webpack-fix-style-only-entries';
+import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 
 import postcssPlugins from './postcss.config';
 
-export default function(mode) {
+export default function (mode) {
   const devMode = mode === 'development';
 
   return {
@@ -17,7 +16,7 @@ export default function(mode) {
 
     entry: {
       html: ['./index.pug'],
-      index: ['./scripts/example.ts']
+      index: ['./scripts/example.ts'],
     },
 
     output: {
@@ -28,7 +27,7 @@ export default function(mode) {
       extensions: ['.pug', '.js', '.scss', '.ts'],
       modules: ['./node_modules'],
       symlinks: true,
-      alias: {}
+      alias: {},
     },
 
     resolveLoader: {
@@ -39,23 +38,23 @@ export default function(mode) {
       rules: [
         {
           test: /\.pug$/,
-          loaders: [
+          rules: [
             {
               loader: 'file-loader',
               options: {
-                name: '[path][name].html'
-              }
+                name: '[path][name].html',
+              },
             },
             {
               loader: 'pug-html-loader',
               options: {
                 doctype: 'html',
                 data: {
-                  debug: devMode
-                }
-              }
-            }
-          ]
+                  debug: devMode,
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.scss$|\.sass$/,
@@ -67,54 +66,56 @@ export default function(mode) {
               loader: 'css-loader',
               options: {
                 sourceMap: false,
-                importLoaders: 1,
               },
             },
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: postcssPlugins,
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: postcssPlugins,
+                },
               },
             },
             {
               loader: 'sass-loader',
               options: {
                 sourceMap: false,
-                precision: 8,
-                includePaths: [path.resolve('./src/styles')],
-              }
-            }
-          ]
+                sassOptions: {
+                  precision: 8,
+                  includePaths: [path.resolve('./src/styles')],
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.tsx?$/,
           exclude: /(node_modules)/,
-          use: ['ts-loader']
+          use: ['ts-loader'],
         },
         {
           test: /\.svg$/,
-          use: 'svg-inline-loader'
-        }
-      ]
+          use: 'svg-inline-loader',
+        },
+      ],
     },
 
     plugins: [
       new NoEmitOnErrorsPlugin(),
-  
+
       new ProgressPlugin(),
-  
+
       new CircularDependencyPlugin({
         exclude: /(\\|\/)node_modules(\\|\/)/,
         failOnError: false,
       }),
-  
-      new NamedModulesPlugin(),
 
-      new FixStyleOnlyEntriesPlugin({
-        extensions: ['scss', 'pug', 'html'],
-        silent: true
-      }),
-    ]
+      new RemoveEmptyScriptsPlugin(),
+    ],
+
+    optimization: {
+      moduleIds: 'named',
+    },
   };
 }

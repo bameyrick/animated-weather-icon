@@ -1,3 +1,4 @@
+import { delay } from '@qntm-code/utils';
 import WeatherPartAbstract from './weather-part-abstract';
 import { AnimatedWeatherTypes } from './weather-types';
 
@@ -8,7 +9,7 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
   protected path: SVGPathElement;
 
   private dashArrayOffset: string;
-  private animationDuration: number = 1000;
+  private readonly animationDuration: number = 1000;
 
   protected getElements(): void {
     this.path = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__path--${this.typeClass}`);
@@ -17,26 +18,20 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
     this.activationPaths = [];
   }
 
-  protected renderIn(): Promise<void> {
-    return new Promise(async resolve => {
-      await this.setClasses();
+  protected async renderIn(): Promise<void> {
+    await this.setClasses();
 
-      this.path.style.strokeDashoffset = '0';
+    this.path.style.strokeDashoffset = '0';
 
-      setTimeout(resolve, this.animationDuration);
-    });
+    await delay(this.animationDuration);
   }
 
-  protected renderOut(): Promise<void> {
-    return new Promise(async resolve => {
-      this.path.style.strokeDashoffset = this.dashArrayOffset;
+  protected async renderOut(): Promise<void> {
+    this.path.style.strokeDashoffset = this.dashArrayOffset;
 
-      setTimeout(() => {
-        this.setClasses(true);
+    await delay(this.animationDuration);
 
-        resolve();
-      }, this.animationDuration);
-    });
+    void this.setClasses(true);
   }
 
   private getColourModifier(): string {

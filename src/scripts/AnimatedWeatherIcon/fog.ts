@@ -14,7 +14,7 @@ export default class Fog extends WeatherPartAbstract {
   }
 
   protected getElements(): void {
-    this.fogBars = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__bar`))];
+    this.fogBars = [...(<never>this.context.querySelectorAll(`.${this.baseClass}__bar`))];
 
     this.activationPaths = this.fogBars;
   }

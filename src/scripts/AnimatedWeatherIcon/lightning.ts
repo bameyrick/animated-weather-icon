@@ -35,6 +35,7 @@ export default class Lightning extends WeatherPartAbstract {
     return this.render(false);
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   private async render(animateIn: boolean = true): Promise<void> {
     this.lightningPath.classList[animateIn ? 'add' : 'remove'](`${this.baseClass}__path--animate`);
   }

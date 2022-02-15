@@ -35,7 +35,7 @@ $ray-move-amount: 2.5%;
     transform: translate(0);
   }
   50% {
-    transform: translate(-$ray-move-amount / 2, $ray-move-amount / 2);
+    transform: translate(-$ray-move-amount * 0.5, $ray-move-amount * 0.5);
   }
 }
 
@@ -55,7 +55,7 @@ $ray-move-amount: 2.5%;
     transform: translate(0);
   }
   50% {
-    transform: translate(-$ray-move-amount / 2, -$ray-move-amount / 2);
+    transform: translate(-$ray-move-amount * 0.5, -$ray-move-amount * 0.5);
   }
 }
 
@@ -75,7 +75,7 @@ $ray-move-amount: 2.5%;
     transform: translate(0);
   }
   50% {
-    transform: translate($ray-move-amount / 2, -$ray-move-amount / 2);
+    transform: translate($ray-move-amount * 0.5, -$ray-move-amount * 0.5);
   }
 }
 
@@ -95,7 +95,7 @@ $ray-move-amount: 2.5%;
     transform: translate(0);
   }
   50% {
-    transform: translate($ray-move-amount / 2, $ray-move-amount / 2);
+    transform: translate($ray-move-amount * 0.5, $ray-move-amount * 0.5);
   }
 }
 
@@ -165,7 +165,7 @@ $ray-move-amount: 2.5%;
   }
 }
 
-$weather-animation-increase: $PI / 100;
+$weather-animation-increase: $PI * 0.01;
 $weather-animation-step: 2;
 $weather-animation-size: 70%;
 
@@ -173,7 +173,7 @@ $weather-animation-i: 51;
 $weather-animation-t: 0;
 
 @function hail($x-multiplier, $weather-animation-t, $weather-animation-i) {
-  $eq: sin($weather-animation-t) / 2;
+  $eq: sin($weather-animation-t) * 0.5;
   $x: $x-multiplier * ($weather-animation-i - 50);
   $y: $eq * -($weather-animation-size * 0.25) + $weather-animation-size * 0.25;
 
@@ -250,7 +250,7 @@ $weather-animation-t: 0;
 
 @function snow($multiplier, $weather-animation-t, $weather-animation-i) {
   $eq: sin($weather-animation-t);
-  $x: $eq * $multiplier * ($weather-animation-i - 50) * 1% / 4;
+  $x: $eq * $multiplier * ($weather-animation-i - 50) * 1% * 0.25;
   $y: $weather-animation-size * 0.25 * $weather-animation-i * 0.01;
 
   @return translate($x, $y);

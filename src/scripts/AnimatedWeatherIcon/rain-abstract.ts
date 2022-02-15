@@ -8,17 +8,19 @@ export default abstract class RainAbstract extends WeatherPartAbstract {
   protected drops: SVGPathElement[];
 
   protected getElements(): void {
-    this.drops = [...(<any>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
+    this.drops = [...(<never>this.context.querySelectorAll(`.${this.baseClass}__drop`))];
 
     this.activationPaths = this.drops;
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   protected async renderIn(): Promise<void> {
     this.drops.forEach(drop =>
       drop.classList.add(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   protected async renderOut(): Promise<void> {
     this.drops.forEach(drop =>
       drop.classList.remove(`${this.baseClass}__drop--animate`, `${this.baseClass}__drop--${this.getWeightModifier()}`)

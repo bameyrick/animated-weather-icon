@@ -51,7 +51,7 @@ export default abstract class WeatherPartAbstract {
   }
 
   private getPaths(): void {
-    this.paths = <SVGPathElement[]>[...(<any>this.context.querySelectorAll(`.${this.baseClass}__path`))];
+    this.paths = <SVGPathElement[]>[...(<never>this.context.querySelectorAll(`.${this.baseClass}__path`))];
   }
 
   private setOffsets(): void {
