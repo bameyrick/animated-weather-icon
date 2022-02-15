@@ -13,7 +13,9 @@
       },
       "extends": ["plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "prettier"],
       "rules": {
-        "@typescript-eslint/no-inferrable-types": "off"
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-extra-parens": ["error"],
+        "arrow-parens": ["error", "as-needed"]
       }
     }
   ],

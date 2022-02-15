@@ -45,9 +45,10 @@ class Example {
   }
 
   private setOptions(type: typeof AnimatedWeatherTypes | typeof AnimatedWeatherTimes, select: HTMLSelectElement): void {
-    const options = Object.keys(type).map(
-      (key) => `<option value="${(type as unknown as Dictionary<string>)[key]}">${(type as unknown as Dictionary<string>)[key]}</option>`
-    );
+    const options = Object.keys(type).map(key => {
+      const value = (type as unknown as Dictionary<string>)[key];
+      return `<option value="${value}}">${value}</option>`;
+    });
 
     select.innerHTML = options.join('');
   }

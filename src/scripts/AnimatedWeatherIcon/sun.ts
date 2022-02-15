@@ -102,8 +102,8 @@ export default class Sun extends WeatherPartAbstract {
     const setter = animateIn ? 'add' : 'remove';
     const rays = animateIn ? this.rays : this.rays.reverse();
 
-    await asyncForEach(rays, (ray) => {
-      return new Promise<void>((resolve) => {
+    await asyncForEach(rays, ray => {
+      return new Promise<void>(resolve => {
         setTimeout(() => {
           ray.classList[setter](cls);
 

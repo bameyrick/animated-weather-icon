@@ -9,7 +9,7 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
   protected path: SVGPathElement;
 
   private dashArrayOffset: string;
-  private animationDuration: number = 1000;
+  private readonly animationDuration: number = 1000;
 
   protected getElements(): void {
     this.path = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__path--${this.typeClass}`);
@@ -66,7 +66,7 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
   }
 
   private setClasses(remove: boolean = false): Promise<void> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const operator = remove ? 'remove' : 'add';
 
       this.path.classList[operator](`${this.baseClass}__path--active`, `${this.baseClass}__path--${this.getColourModifier()}`);
