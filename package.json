@@ -15,6 +15,7 @@
     "start": "yarn tidy-clean && webpack serve --host 0.0.0.0 --port 3000 --config webpack.dev.babel.js",
     "build": "yarn tidy-clean && webpack --config webpack.prod.babel.js",
     "npm-bundle": "yarn tidy-clean && webpack --config webpack.npm.babel.js",
+    "lint": "eslint src/**/*.ts --fix",
     "tidy-clean": "rm -rf ./build ./dist",
     "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn",
     "check-package": "tar tvf $(npm pack)"
@@ -25,10 +26,10 @@
     }
   },
   "lint-staged": {
-    "*.ts": ["prettier --print-width 140 --single-quote --trailing-comma es5 --parser typescript --write", "git add"],
-    "*.json": ["prettier --print-width 140 --single-quote --trailing-comma es5 --parser json --write", "git add"],
-    "*.js": ["prettier --print-width 140 --single-quote --trailing-comma es5 --write", "git add"],
-    "*.scss": ["prettier --print-width 140 --single-quote --write", "sass-lint", "git add"]
+    "*.ts": ["prettier --print-width 140 --single-quote --trailing-comma es5 --parser typescript --write", "yarn lint"],
+    "*.json": ["prettier --print-width 140 --single-quote --trailing-comma es5 --parser json --write"],
+    "*.js": ["prettier --print-width 140 --single-quote --trailing-comma es5 --write"],
+    "*.scss": ["prettier --print-width 140 --single-quote --write", "sass-lint"]
   },
   "dependencies": {
     "@qntm-code/utils": "^2.7.0"
@@ -49,7 +50,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "file-loader": "^6.2.0",
     "husky": "^1.3.1",
-    "lint-staged": "^8.1.3",
+    "lint-staged": "^12.3.4",
     "mathsass": "^0.11.0",
     "postcss": "^8.4.6",
     "postcss-loader": "^6.2.1",
