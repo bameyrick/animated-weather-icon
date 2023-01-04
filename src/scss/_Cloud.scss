@@ -1,8 +1,10 @@
-.Cloud {
-  &__path {
+.Cloud,
+.CloudMask {
+  &__path,
+  &__mask {
     display: block;
     stroke: $off-white;
-    fill: $white;
+    fill: transparent;
     opacity: 0;
 
     &--medium {
@@ -18,5 +20,12 @@
       transition: stroke-dashoffset 1s $ease-in-out-quad;
       animation: weather-bob 5s linear infinite;
     }
+  }
+}
+
+.CloudMask {
+  &__path {
+    fill: $black;
+    stroke: $black;
   }
 }

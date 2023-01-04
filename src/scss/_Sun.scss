@@ -15,7 +15,7 @@ $sun-small-scale: 0.75;
   }
 
   &__circle {
-    fill: $white;
+    fill: transparent;
     transition: transform 0.5s $ease-out-quart;
   }
 
