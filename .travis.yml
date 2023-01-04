@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-- 10.15.1
+  - 16.14.0
 cache: yarn
 jobs:
   include:
-  - stage: npm-bundle
-    script: yarn npm-bundle && npm version $TRAVIS_BRANCH --allow-same-version --allow-empty
-    deploy:
-    - provider: npm
-      skip_cleanup: true
-      email: bameyrick@gmail.com
-      api_key:
-        secure: aZqyrOFUCJWDwklx1JemTQRrtgpWLSW07E2MipU4xmgDCDSCAcS+txtFbHJuSbfsa1qQPpqExuGFq2fApsISvjBjAuVgonWaMp3BKYBEZPcBC90lTyVgvjKJH3nwm056elS1a9dUQirAkGxbsmW1hbUiXRdHoqDAdHHJ1Tg/103UwW5xc6Y28fhrYJriuXh5zlfd3uhrhYHLOOD1SFeW1TbyElJQyPGQKH7z5F60NwwmOEWRHL56jBoQlK+xeAge7AUxfBkHC/EqfPGinp0WEZ1YeBQdnQpcW96Xv+8ALXxMY8JCJMtbXMik/YCv/hjY7B3Aq2uYrtMq/aHScc1NVCuSy3ncVFADAVPBCZEiJXDlB9/jfrfSrRVeS/5Tf2VXtpZkpq016xfZzzlLC7orv+73V2GIoD/PRN78QNlQkbPBea9AgiiyS/8f5dMB/n4kMtFlrYiN1K+E5kvZbC1tnFoeWqyu0jgUTtzX75diEWnLfMBkkj0/k0xPgz0Po2fkthnNIx5TyicBLICuR3RNZTQzgOY039/vXztndjLSy007zGJKgy1Z9Mx3wSTJUdRVdUiLVBK6wT6EOuAudKMQBaV/KxGjbD5DnHhPP8zA97HYw5yeySJElnKsD6HLagVDTxZH4szS4x5dR1N2xdNDbzjyzWtDUiNrUaGasAd4lys=
-      on:
-        tags: true
+    - stage: npm-bundle
+      script: yarn npm-bundle && npm version $TRAVIS_BRANCH --allow-same-version --allow-empty
+      deploy:
+        - provider: npm
+          skip_cleanup: true
+          email: bameyrick@gmail.com
+          api_key:
+            secure: aZqyrOFUCJWDwklx1JemTQRrtgpWLSW07E2MipU4xmgDCDSCAcS+txtFbHJuSbfsa1qQPpqExuGFq2fApsISvjBjAuVgonWaMp3BKYBEZPcBC90lTyVgvjKJH3nwm056elS1a9dUQirAkGxbsmW1hbUiXRdHoqDAdHHJ1Tg/103UwW5xc6Y28fhrYJriuXh5zlfd3uhrhYHLOOD1SFeW1TbyElJQyPGQKH7z5F60NwwmOEWRHL56jBoQlK+xeAge7AUxfBkHC/EqfPGinp0WEZ1YeBQdnQpcW96Xv+8ALXxMY8JCJMtbXMik/YCv/hjY7B3Aq2uYrtMq/aHScc1NVCuSy3ncVFADAVPBCZEiJXDlB9/jfrfSrRVeS/5Tf2VXtpZkpq016xfZzzlLC7orv+73V2GIoD/PRN78QNlQkbPBea9AgiiyS/8f5dMB/n4kMtFlrYiN1K+E5kvZbC1tnFoeWqyu0jgUTtzX75diEWnLfMBkkj0/k0xPgz0Po2fkthnNIx5TyicBLICuR3RNZTQzgOY039/vXztndjLSy007zGJKgy1Z9Mx3wSTJUdRVdUiLVBK6wT6EOuAudKMQBaV/KxGjbD5DnHhPP8zA97HYw5yeySJElnKsD6HLagVDTxZH4szS4x5dR1N2xdNDbzjyzWtDUiNrUaGasAd4lys=
+          on:
+            tags: true
 stages:
-- name: npm-bundle
-  if: tag IS present
+  - name: npm-bundle
+    if: tag IS present
