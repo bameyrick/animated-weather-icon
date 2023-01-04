@@ -1,22 +1,22 @@
-import { AnimatedWeatherTypes } from './weather-types';
-import { AnimatedWeatherTimes } from './weather-times';
-import Sun from './sun';
 import CloudFull from './cloud-full';
 import CloudPartial from './cloud-partial';
-import Rain from './rain';
 import Drizzle from './drizzle';
-import Snow from './snow';
-import Lightning from './lightning';
-import Hail from './hail';
 import Fog from './fog';
+import Hail from './hail';
+import Lightning from './lightning';
+import Rain from './rain';
+import Snow from './snow';
+import Sun from './sun';
+import { AnimatedWeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
 
 import '../../scss/index.scss';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
 const SVG: string = require('../../icon.svg');
 
-export { AnimatedWeatherTypes } from './weather-types';
 export { AnimatedWeatherTimes } from './weather-times';
+export { AnimatedWeatherTypes } from './weather-types';
 
 export class AnimatedWeatherIcon {
   private currentType: AnimatedWeatherTypes;
@@ -25,6 +25,8 @@ export class AnimatedWeatherIcon {
   private sun: Sun;
   private cloudFull: CloudFull;
   private cloudPartial: CloudPartial;
+  private cloudFullMask: CloudFull;
+  private cloudPartialMask: CloudPartial;
   private rain: Rain;
   private drizzle: Drizzle;
   private snow: Snow;
@@ -46,6 +48,8 @@ export class AnimatedWeatherIcon {
     this.sun = new Sun(this.context);
     this.cloudFull = new CloudFull(this.context);
     this.cloudPartial = new CloudPartial(this.context);
+    this.cloudFullMask = new CloudFull(this.context, true);
+    this.cloudPartialMask = new CloudPartial(this.context, true);
     this.rain = new Rain(this.context);
     this.drizzle = new Drizzle(this.context);
     this.snow = new Snow(this.context);
@@ -62,7 +66,9 @@ export class AnimatedWeatherIcon {
     this.currentType = type;
     this.currentTime = time;
 
+    void this.cloudFullMask.show(type, time);
     await this.cloudFull.show(type, time);
+    void this.cloudPartialMask.show(type, time);
     await this.cloudPartial.show(type, time);
     await this.rain.show(type, time);
     await this.drizzle.show(type, time);
@@ -80,7 +86,9 @@ export class AnimatedWeatherIcon {
     await this.drizzle.hide(this.currentType);
     await this.snow.hide(this.currentType);
     await this.hail.hide(this.currentType);
+    void this.cloudFullMask.hide(this.currentType);
     await this.cloudFull.hide(this.currentType);
+    void this.cloudPartialMask.hide(this.currentType);
     await this.cloudPartial.hide(this.currentType);
     await this.fog.hide(this.currentType);
   }

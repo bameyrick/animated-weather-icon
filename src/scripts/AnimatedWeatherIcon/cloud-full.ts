@@ -5,8 +5,8 @@ export default class CloudFull extends CloudAbstract {
   protected typeClass: string = 'full';
   protected types: AnimatedWeatherTypes[] = [AnimatedWeatherTypes.BrokenClouds, AnimatedWeatherTypes.Cloudy, AnimatedWeatherTypes.Overcast];
 
-  constructor(protected iconContext: HTMLElement) {
-    super();
+  constructor(protected iconContext: HTMLElement, protected mask?: boolean) {
+    super(iconContext, mask);
     this.initialise();
   }
 }
