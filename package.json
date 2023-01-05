@@ -32,12 +32,14 @@
     "*.scss": ["prettier --print-width 140 --single-quote --write", "sass-lint"]
   },
   "dependencies": {
-    "@qntm-code/utils": "^2.7.0"
+    "@qntm-code/utils": "^2.7.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.17.0",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "autoprefixer": "^10.4.2",
