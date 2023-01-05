@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import CloudFull from './cloud-full';
 import CloudPartial from './cloud-partial';
 import Drizzle from './drizzle';
@@ -34,6 +35,8 @@ export class AnimatedWeatherIcon {
   private hail: Hail;
   private fog: Fog;
 
+  private readonly id = uuid();
+
   constructor(private context: HTMLElement) {
     this.initialiseIcon();
   }
@@ -44,6 +47,11 @@ export class AnimatedWeatherIcon {
     this.icon.innerHTML = SVG;
 
     this.context.appendChild(this.icon);
+
+    const maskId = `cloud-mask-${this.id}`;
+
+    this.context.querySelector('.CloudMask')?.setAttribute('id', maskId);
+    this.context.querySelector('.AnimatedWeatherIcon__sun-mask')?.setAttribute('mask', `url(#${maskId})`);
 
     this.sun = new Sun(this.context);
     this.cloudFull = new CloudFull(this.context);
