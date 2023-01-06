@@ -1,5 +1,5 @@
-import { AnimatedWeatherTypes } from './weather-types';
 import { AnimatedWeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
 
 export default abstract class WeatherPartAbstract {
   protected abstract iconContext: HTMLElement;
@@ -24,9 +24,9 @@ export default abstract class WeatherPartAbstract {
     }
   }
 
-  public async hide(type: AnimatedWeatherTypes): Promise<void> {
+  public async hide(type: AnimatedWeatherTypes, force: boolean): Promise<void> {
     if (this.types.includes(type) && this.visible) {
-      await this.renderOut();
+      await this.renderOut(force);
 
       this.visible = false;
     }
@@ -36,7 +36,7 @@ export default abstract class WeatherPartAbstract {
 
   protected abstract renderIn(): Promise<void>;
 
-  protected abstract renderOut(): Promise<void>;
+  protected abstract renderOut(force: boolean): Promise<void>;
 
   protected initialise(): void {
     this.getContext();

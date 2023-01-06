@@ -30,10 +30,12 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
     await delay(this.animationDuration);
   }
 
-  protected async renderOut(): Promise<void> {
+  protected async renderOut(force: boolean): Promise<void> {
     this.path.style.strokeDashoffset = this.dashArrayOffset;
 
-    await delay(this.animationDuration);
+    if (!force) {
+      await delay(this.animationDuration);
+    }
 
     void this.setClasses(true);
   }

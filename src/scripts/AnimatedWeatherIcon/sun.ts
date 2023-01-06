@@ -1,7 +1,7 @@
-import { delay, asyncForEach } from '@qntm-code/utils';
+import { asyncForEach, delay } from '@qntm-code/utils';
 import WeatherPartAbstract from './weather-part-abstract';
-import { AnimatedWeatherTypes } from './weather-types';
 import { AnimatedWeatherTimes } from './weather-times';
+import { AnimatedWeatherTypes } from './weather-types';
 
 const sunRayDelay = 50;
 
@@ -52,11 +52,11 @@ export default class Sun extends WeatherPartAbstract {
     }
   }
 
-  protected async renderOut(): Promise<void> {
+  protected async renderOut(force: boolean): Promise<void> {
     if (this.time === AnimatedWeatherTimes.Day) {
-      await this.renderOutSun();
+      await this.renderOutSun(force);
     } else {
-      await this.renderOutMoon();
+      await this.renderOutMoon(force);
     }
   }
 
@@ -67,11 +67,17 @@ export default class Sun extends WeatherPartAbstract {
     await this.animateRays(true);
   }
 
-  private async renderOutSun(): Promise<void> {
-    await this.activateRays(false);
-    await this.animateRays(false);
-    await this.setActiveState(false);
-    await delay(500);
+  private async renderOutSun(force): Promise<void> {
+    if (force) {
+      void this.activateRays(false);
+      void this.animateRays(false);
+      void this.setActiveState(false);
+    } else {
+      await this.animateRays(false);
+      await this.activateRays(false);
+      await this.setActiveState(false);
+      await delay(500);
+    }
   }
 
   private async setActiveState(active: boolean): Promise<void> {
@@ -121,9 +127,13 @@ export default class Sun extends WeatherPartAbstract {
     await delay(500);
   }
 
-  private async renderOutMoon(): Promise<void> {
+  private async renderOutMoon(force: boolean): Promise<void> {
     this.moon.classList.remove(`${this.baseClass}__night--animate`);
-    await delay(500);
+
+    if (!force) {
+      await delay(500);
+    }
+
     this.context.classList.remove(`${this.baseClass}--night`);
     void this.setSmallClass(false);
   }
