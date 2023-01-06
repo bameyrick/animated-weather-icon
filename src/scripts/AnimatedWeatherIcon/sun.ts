@@ -69,8 +69,8 @@ export default class Sun extends WeatherPartAbstract {
 
   private async renderOutSun(force): Promise<void> {
     if (force) {
-      void this.activateRays(false);
-      void this.animateRays(false);
+      void this.animateRays(false, true);
+      void this.activateRays(false, true);
       void this.setActiveState(false);
     } else {
       await this.animateRays(false);
@@ -96,27 +96,31 @@ export default class Sun extends WeatherPartAbstract {
     }
   }
 
-  private activateRays(animateIn: boolean = true): Promise<void> {
-    return this.setRays(animateIn, `${this.baseClass}__ray--active`, sunRayDelay);
+  private activateRays(animateIn: boolean = true, force = false): Promise<void> {
+    return this.setRays(animateIn, `${this.baseClass}__ray--active`, force, sunRayDelay);
   }
 
-  private animateRays(animateIn: boolean): Promise<void> {
-    return this.setRays(animateIn, `${this.baseClass}__ray--animate`);
+  private animateRays(animateIn: boolean, force = false): Promise<void> {
+    return this.setRays(animateIn, `${this.baseClass}__ray--animate`, force);
   }
 
-  private async setRays(animateIn: boolean, cls: string, iterationDelay: number = 0): Promise<void> {
+  private async setRays(animateIn: boolean, cls: string, force = false, iterationDelay: number = 0): Promise<void> {
     const setter = animateIn ? 'add' : 'remove';
     const rays = animateIn ? this.rays : this.rays.reverse();
 
-    await asyncForEach(rays, ray => {
-      return new Promise<void>(resolve => {
-        setTimeout(() => {
-          ray.classList[setter](cls);
+    if (force) {
+      rays.forEach(ray => ray.classList[setter](cls));
+    } else {
+      await asyncForEach(rays, ray => {
+        return new Promise<void>(resolve => {
+          setTimeout(() => {
+            ray.classList[setter](cls);
 
-          resolve();
-        }, iterationDelay);
+            resolve();
+          }, iterationDelay);
+        });
       });
-    });
+    }
   }
 
   private async renderInMoon(): Promise<void> {
