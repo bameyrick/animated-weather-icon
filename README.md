@@ -124,8 +124,30 @@ async function myFunction() {
 
   await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
 
+  setTimeout(async () => {
+    await icon.unsetIcon();
+
+    // do something
+  }, 2000);
+}
+
+myFunction();
+```
+
+The `unsetIcon` method has an optional `force` argument that you can pass to force the icon to hide immediately without animating out.
+
+```typescript
+import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 'animated-weather-icon';
+
+async function myFunction() {
+  const icon = new AnimatedWeatherIcon(renderTarget);
+
+  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
+
   setTimeout(() => {
-    icon.unsetIcon();
+    void icon.unsetIcon(true);
+
+    // do something
   }, 2000);
 }
 
