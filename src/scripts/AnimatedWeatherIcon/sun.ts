@@ -6,7 +6,7 @@ import { AnimatedWeatherTypes } from './weather-types';
 const sunRayDelay = 50;
 
 export default class Sun extends WeatherPartAbstract {
-  protected baseClass: string = 'Sun';
+  protected baseClass: string = this.mask ? 'SunMask' : 'Sun';
 
   private smallTypes: AnimatedWeatherTypes[] = [
     AnimatedWeatherTypes.BrokenClouds,
@@ -30,7 +30,7 @@ export default class Sun extends WeatherPartAbstract {
   private rays: SVGPathElement[];
   private moon: SVGPathElement;
 
-  constructor(protected iconContext: HTMLElement) {
+  constructor(protected iconContext: HTMLElement, private readonly mask?: boolean) {
     super();
     this.initialise();
   }
@@ -41,7 +41,10 @@ export default class Sun extends WeatherPartAbstract {
     this.rays = <SVGPathElement[]>[...(<never>this.context.querySelectorAll(`.${this.baseClass}__ray`))];
     this.moon = <SVGPathElement>this.context.querySelector(`.${this.baseClass}__night`);
 
-    this.activationPaths = [this.circle, ...this.rays, this.moon];
+    this.activationPaths = [this.circle];
+    if (!this.mask) {
+      this.activationPaths = [...this.activationPaths, ...this.rays, this.moon];
+    }
   }
 
   protected async renderIn(): Promise<void> {

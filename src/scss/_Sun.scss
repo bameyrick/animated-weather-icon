@@ -1,10 +1,10 @@
 $sun-small-scale: 0.75;
 
-.Sun {
-  $c: &;
-
-  &__circle,
-  &__ray {
+.Sun,
+.SunMask {
+  &__circle {
+    fill: transparent;
+    transition: transform 0.5s $ease-out-quart;
     transform: scale(0);
     transform-origin: 50% 50%;
     stroke: $yellow;
@@ -14,10 +14,20 @@ $sun-small-scale: 0.75;
     }
   }
 
-  &__circle {
-    fill: transparent;
-    transition: transform 0.5s $ease-out-quart;
+  &--small {
+    transform: scale($sun-small-scale) translate(15%, -20%);
+    transform-origin: 50% 50%;
   }
+
+  &--small & {
+    &__circle {
+      stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
+    }
+  }
+}
+
+.Sun {
+  $c: &;
 
   &__rays {
     transform-origin: 50%;
@@ -29,6 +39,13 @@ $sun-small-scale: 0.75;
 
   &__ray {
     transition: transform 0.5s $ease-out-quart;
+    transform: scale(0);
+    transform-origin: 50% 50%;
+    stroke: $yellow;
+
+    &--active {
+      transform: scale(1);
+    }
   }
 
   @for $i from 1 through 8 {
@@ -49,19 +66,20 @@ $sun-small-scale: 0.75;
     }
   }
 
-  &--small {
-    transform: scale($sun-small-scale) translate(15%, -20%);
-    transform-origin: 50% 50%;
+  &--night#{$c}--small {
+    transform: scale($sun-small-scale) translate(20%, -25%);
   }
 
   &--small & {
-    &__circle,
     &__ray {
       stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
     }
   }
+}
 
-  &--night#{$c}--small {
-    transform: scale($sun-small-scale) translate(20%, -25%);
+.SunMask {
+  &__circle {
+    fill: $black;
+    stroke: $black;
   }
 }
