@@ -87,7 +87,10 @@ export default class Sun extends WeatherPartAbstract {
     const operator = active ? 'add' : 'remove';
 
     this.circle.classList[operator](`${this.baseClass}__circle--active`);
-    this.raysContainer.classList[operator](`${this.baseClass}__rays--animate`);
+
+    if (!this.mask) {
+      this.raysContainer.classList[operator](`${this.baseClass}__rays--animate`);
+    }
 
     await this.setSmallClass(active);
   }
