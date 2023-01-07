@@ -50,7 +50,7 @@ export default class Sun extends WeatherPartAbstract {
   protected async renderIn(): Promise<void> {
     if (this.time === AnimatedWeatherTimes.Day) {
       await this.renderInSun();
-    } else {
+    } else if (!this.mask) {
       await this.renderInMoon();
     }
   }
@@ -58,7 +58,7 @@ export default class Sun extends WeatherPartAbstract {
   protected async renderOut(force: boolean): Promise<void> {
     if (this.time === AnimatedWeatherTimes.Day) {
       await this.renderOutSun(force);
-    } else {
+    } else if (!this.mask) {
       await this.renderOutMoon(force);
     }
   }
