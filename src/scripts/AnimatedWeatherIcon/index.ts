@@ -23,6 +23,7 @@ export class AnimatedWeatherIcon {
   private currentType: AnimatedWeatherTypes;
   private currentTime: AnimatedWeatherTimes;
   private icon: HTMLElement;
+  private sunMask: Sun;
   private sun: Sun;
   private cloudFull: CloudFull;
   private cloudPartial: CloudPartial;
@@ -37,7 +38,7 @@ export class AnimatedWeatherIcon {
 
   private readonly id = uuid();
 
-  constructor(private context: HTMLElement) {
+  constructor(private readonly context: HTMLElement) {
     this.initialiseIcon();
   }
 
@@ -48,11 +49,17 @@ export class AnimatedWeatherIcon {
 
     this.context.appendChild(this.icon);
 
-    const maskId = `cloud-mask-${this.id}`;
+    const cloudMaskID = `cloud-mask-${this.id}`;
 
-    this.context.querySelector('.CloudMask')?.setAttribute('id', maskId);
-    this.context.querySelector('.AnimatedWeatherIcon__sun-mask')?.setAttribute('mask', `url(#${maskId})`);
+    this.context.querySelector('.CloudMask')?.setAttribute('id', cloudMaskID);
+    this.context.querySelector('.AnimatedWeatherIcon__sun-mask')?.setAttribute('mask', `url(#${cloudMaskID})`);
 
+    const sunMaskID = `sun-mask-${this.id}`;
+
+    this.context.querySelector('.SunMask')?.setAttribute('id', sunMaskID);
+    this.context.querySelector('.AnimatedWeatherIcon__rays-mask')?.setAttribute('mask', `url(#${sunMaskID})`);
+
+    this.sunMask = new Sun(this.context, true);
     this.sun = new Sun(this.context);
     this.cloudFull = new CloudFull(this.context);
     this.cloudPartial = new CloudPartial(this.context);
@@ -83,11 +90,13 @@ export class AnimatedWeatherIcon {
     await this.snow.show(type, time);
     await this.hail.show(type, time);
     await this.lightning.show(type, time);
+    void this.sunMask.show(type, time);
     await this.sun.show(type, time);
     await this.fog.show(type, time);
   }
 
   public async unsetIcon(force = false): Promise<void> {
+    void this.sunMask.hide(this.currentType, force);
     await this.sun.hide(this.currentType, force);
     await this.lightning.hide(this.currentType, force);
     await this.rain.hide(this.currentType, force);
