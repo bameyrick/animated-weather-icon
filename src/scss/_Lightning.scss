@@ -8,4 +8,14 @@
       animation: weather-lightning 2s linear infinite;
     }
   }
+
+  &--no-animation & {
+    &__path {
+      animation: none;
+
+      &--animate {
+        opacity: 1;
+      }
+    }
+  }
 }

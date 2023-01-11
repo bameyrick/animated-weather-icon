@@ -12,11 +12,11 @@
         timing-function: ease-in-out;
         iteration-count: infinite;
       }
-      
+
       &:nth-child(2) {
         animation-delay: 3s;
       }
-  
+
       &:nth-child(3),
       &:nth-child(6) {
         animation: {
@@ -44,21 +44,39 @@
       &:nth-child(3) {
         animation-delay: 2s;
       }
-  
+
       &:nth-child(4) {
         animation: {
           name: weather-snow-2, weather-fade-in-out;
           delay: 2.5s;
         }
       }
-      
+
       &:nth-child(5) {
         animation-delay: 3s;
       }
-      
+
       &:nth-child(6) {
         animation-delay: 3.5s;
       }
+    }
+  }
+
+  &__flake {
+    fill: $off-white;
+    display: none;
+  }
+
+  &--no-animation & {
+    &__drop {
+      &--animate {
+        animation: none;
+        fill-opacity: 0;
+      }
+    }
+
+    &__flake--active {
+      display: block;
     }
   }
 }

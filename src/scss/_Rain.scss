@@ -40,4 +40,20 @@
       }
     }
   }
+
+  &--no-animation & {
+    &__drop {
+      animation: none;
+
+      transform: translateY(10%);
+
+      &:nth-child(2) {
+        transform: translateY(15%);
+      }
+
+      &--animate {
+        stroke-opacity: 1;
+      }
+    }
+  }
 }

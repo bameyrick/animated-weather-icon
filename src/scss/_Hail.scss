@@ -47,4 +47,21 @@
       }
     }
   }
+
+  &--no-animation & {
+    &__drop {
+      &--animate {
+        animation: none;
+        fill-opacity: 1;
+      }
+
+      &:nth-child(odd) {
+        transform: translate(1%, 0);
+      }
+
+      &:nth-child(even) {
+        transform: translate(-1%, 10%);
+      }
+    }
+  }
 }

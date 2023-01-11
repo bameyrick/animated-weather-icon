@@ -51,7 +51,7 @@ const icon = new AnimatedWeatherIcon(renderTarget);
 
 To display a weather type you must call `setType` on your icon instance.
 
-The `setType` method takes two arguments `type`, and **optionally** `time` and returns a Promise that resolves when the icon finished animating in.
+The `setType` method takes three arguments `type`, and **optionally** `time` and `disableAnimations`. It returns a Promise that resolves when the icon finished animating in.
 
 If using TypeScript you can import enums for the `type` and `time` and pass them as arguments like so:
 
@@ -134,6 +134,28 @@ async function myFunction() {
 myFunction();
 ```
 
+### Changing the weather icon after one has been set
+
+You can change the weather type after it has been set, as if the icon knows it already has a different icon set, it will call `unsetIcon` for you.
+
+```typescript
+import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 'animated-weather-icon';
+
+async function myFunction() {
+  const icon = new AnimatedWeatherIcon(renderTarget);
+
+  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
+
+  setTimeout(() => {
+    icon.setType(AnimatedWeatherTypes.Overcast, AnimatedWeatherTimes.Day);
+  }, 2000);
+}
+
+myFunction();
+```
+
+### Forcing icons to remove immediately
+
 The `unsetIcon` method has an optional `force` argument that you can pass to force the icon to hide immediately without animating out.
 
 ```typescript
@@ -154,9 +176,9 @@ async function myFunction() {
 myFunction();
 ```
 
-### Changing the weather icon after one has been set
+### Disabling animations
 
-You can change the weather type after it has been set, as if the icon knows it already has a different icon set, it will call `unsetIcon` for you.
+You can disable animations by passing `true` as the third argument to `setType`.
 
 ```typescript
 import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 'animated-weather-icon';
@@ -164,12 +186,8 @@ import { AnimatedWeatherIcon, AnimatedWeatherTypes, AnimatedWeatherTimes } from 
 async function myFunction() {
   const icon = new AnimatedWeatherIcon(renderTarget);
 
-  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day);
+  await icon.setType(AnimatedWeatherTypes.Clear, AnimatedWeatherTimes.Day, true);
 
-  setTimeout(() => {
-    icon.setType(AnimatedWeatherTypes.Overcast, AnimatedWeatherTimes.Day);
-  }, 2000);
+  // do something
 }
-
-myFunction();
 ```

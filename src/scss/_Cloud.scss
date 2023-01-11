@@ -21,6 +21,14 @@
       animation: weather-bob 5s linear infinite;
     }
   }
+
+  &--no-animation & {
+    &__path,
+    &__mask {
+      transition: none;
+      animation: none;
+    }
+  }
 }
 
 .CloudMask {

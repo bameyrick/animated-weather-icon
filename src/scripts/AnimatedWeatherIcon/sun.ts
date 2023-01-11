@@ -66,12 +66,16 @@ export default class Sun extends WeatherPartAbstract {
   private async renderInSun(): Promise<void> {
     await this.setActiveState(true);
     await this.activateRays(true);
-    await delay(500);
+
+    if (!this.disableAnimation) {
+      await delay(500);
+    }
+
     await this.animateRays(true);
   }
 
   private async renderOutSun(force): Promise<void> {
-    if (force) {
+    if (force || this.disableAnimation) {
       void this.animateRays(false, true);
       void this.activateRays(false, true);
       void this.setActiveState(false);
@@ -97,7 +101,7 @@ export default class Sun extends WeatherPartAbstract {
 
   private async setSmallClass(active: boolean): Promise<void> {
     if (this.smallTypes.includes(this.type)) {
-      await delay(active ? 0 : 500);
+      await delay(active || this.disableAnimation ? 0 : 500);
       this.context.classList[active ? 'add' : 'remove'](`${this.baseClass}--small`);
     }
   }
@@ -114,7 +118,7 @@ export default class Sun extends WeatherPartAbstract {
     const setter = animateIn ? 'add' : 'remove';
     const rays = animateIn ? this.rays : this.rays.reverse();
 
-    if (force) {
+    if (force || this.disableAnimation) {
       rays.forEach(ray => ray.classList[setter](cls));
     } else {
       await asyncForEach(rays, ray => {
@@ -134,7 +138,9 @@ export default class Sun extends WeatherPartAbstract {
     void this.setSmallClass(true);
     this.moon.classList.add(`${this.baseClass}__night--animate`);
 
-    await delay(500);
+    if (!this.disableAnimation) {
+      await delay(500);
+    }
   }
 
   private async renderOutMoon(force: boolean): Promise<void> {

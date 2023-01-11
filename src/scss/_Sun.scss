@@ -24,6 +24,12 @@ $sun-small-scale: 0.75;
       stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
     }
   }
+
+  &--no-animation & {
+    &__circle {
+      transition: none;
+    }
+  }
 }
 
 .Sun {
@@ -32,7 +38,7 @@ $sun-small-scale: 0.75;
   &__rays {
     transform-origin: 50%;
 
-    &--animate {
+    #{$c}:not(#{$c}--no-animation) &--animate {
       animation: weather-rotate 120s linear infinite;
     }
   }
@@ -73,6 +79,26 @@ $sun-small-scale: 0.75;
   &--small & {
     &__ray {
       stroke-width: $stroke-width * (1 + (1 - $sun-small-scale));
+    }
+  }
+
+  &--no-animation & {
+    &__rays {
+      animation: none;
+    }
+
+    &__ray {
+      transition: none;
+      animation: none;
+    }
+
+    &__night {
+      transition: none;
+      animation: none;
+
+      &--animate {
+        opacity: 1;
+      }
     }
   }
 }

@@ -10,9 +10,9 @@
         timing-function: ease-in-out;
         iteration-count: infinite;
       }
-      
+
       &:nth-child(2) {
-        animation-delay: .9s;
+        animation-delay: 0.9s;
       }
 
       &:nth-child(3) {
@@ -27,6 +27,22 @@
     &--heavy {
       stroke: $blue;
       animation-duration: 1.5s;
+    }
+  }
+
+  &--no-animation & {
+    &__drop {
+      animation: none;
+
+      transform: translateY(10%);
+
+      &:nth-child(2) {
+        transform: translateY(15%);
+      }
+
+      &--animate {
+        stroke-opacity: 1;
+      }
     }
   }
 }
