@@ -16,6 +16,9 @@ html(lang="en-gb")
                 p.Example__option
                     label(for="weather-time").Example__label Time
                     select#weather-time.Example__select.js-weather-times(disabled)
+                p.Example__option
+                    label(for="weather-animation").Example__label Disable Animations
+                    input#weather-animation.Example__select.js-disable-animation(disabled type="checkbox")
 
         script(src="/index.js")
         if debug

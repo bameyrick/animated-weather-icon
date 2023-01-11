@@ -27,7 +27,9 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
 
     this.path.style.strokeDashoffset = '0';
 
-    await delay(this.animationDuration);
+    if (!this.disableAnimation) {
+      await delay(this.animationDuration);
+    }
   }
 
   protected async renderOut(force: boolean): Promise<void> {

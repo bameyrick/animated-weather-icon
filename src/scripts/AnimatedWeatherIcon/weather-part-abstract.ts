@@ -1,3 +1,4 @@
+import { delay } from '@qntm-code/utils';
 import { AnimatedWeatherTimes } from './weather-times';
 import { AnimatedWeatherTypes } from './weather-types';
 
@@ -13,7 +14,15 @@ export default abstract class WeatherPartAbstract {
   protected context: SVGElement;
   private paths: SVGPathElement[];
 
-  public async show(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes): Promise<void> {
+  protected disableAnimation = false;
+
+  public async show(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes, disableAnimation: boolean): Promise<void> {
+    this.disableAnimation = disableAnimation;
+
+    if (this.disableAnimation) {
+      this.context.classList.add(`${this.baseClass}--no-animation`);
+    }
+
     if (this.types.includes(type) && !this.visible) {
       this.type = type;
       this.time = time;
@@ -26,10 +35,14 @@ export default abstract class WeatherPartAbstract {
 
   public async hide(type: AnimatedWeatherTypes, force: boolean): Promise<void> {
     if (this.types.includes(type) && this.visible) {
-      await this.renderOut(force);
+      await this.renderOut(force || this.disableAnimation);
 
       this.visible = false;
     }
+
+    await delay();
+
+    this.context.classList.remove(`${this.baseClass}--no-animation`);
   }
 
   protected abstract getElements(): void;

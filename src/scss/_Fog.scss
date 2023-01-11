@@ -1,6 +1,4 @@
 .Fog {
-  animation: weather-bob 5s linear infinite;
-
   &__bar {
     fill: $light-grey;
     fill-opacity: 0;
@@ -20,6 +18,21 @@
         &:nth-child(#{$i}) {
           animation-delay: 0.5s * $i;
         }
+      }
+    }
+  }
+
+  &:not(&--no-animation) {
+    animation: weather-bob 5s linear infinite;
+  }
+
+  &--no-animation & {
+    &__bar {
+      animation: none;
+      transition: none;
+
+      &--animate {
+        fill-opacity: 0.7;
       }
     }
   }

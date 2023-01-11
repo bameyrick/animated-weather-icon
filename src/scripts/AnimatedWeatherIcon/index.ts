@@ -38,6 +38,8 @@ export class AnimatedWeatherIcon {
 
   private readonly id = uuid();
 
+  private disableAnimation = false;
+
   constructor(private readonly context: HTMLElement) {
     this.initialiseIcon();
   }
@@ -73,26 +75,35 @@ export class AnimatedWeatherIcon {
     this.fog = new Fog(this.context);
   }
 
-  public async setType(type: AnimatedWeatherTypes, time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day): Promise<void> {
-    if (this.currentType && this.currentTime && (this.currentType !== type || this.currentTime !== time)) {
-      await this.unsetIcon();
+  public async setType(
+    type: AnimatedWeatherTypes,
+    time: AnimatedWeatherTimes = AnimatedWeatherTimes.Day,
+    disableAnimation = false
+  ): Promise<void> {
+    if (
+      this.currentType &&
+      this.currentTime &&
+      (this.currentType !== type || this.currentTime !== time || this.disableAnimation !== disableAnimation)
+    ) {
+      await this.unsetIcon(this.disableAnimation);
     }
+    this.disableAnimation = disableAnimation;
 
     this.currentType = type;
     this.currentTime = time;
 
-    void this.cloudFullMask.show(type, time);
-    await this.cloudFull.show(type, time);
-    void this.cloudPartialMask.show(type, time);
-    await this.cloudPartial.show(type, time);
-    await this.rain.show(type, time);
-    await this.drizzle.show(type, time);
-    await this.snow.show(type, time);
-    await this.hail.show(type, time);
-    await this.lightning.show(type, time);
-    void this.sunMask.show(type, time);
-    await this.sun.show(type, time);
-    await this.fog.show(type, time);
+    void this.cloudFullMask.show(type, time, disableAnimation);
+    await this.cloudFull.show(type, time, disableAnimation);
+    void this.cloudPartialMask.show(type, time, disableAnimation);
+    await this.cloudPartial.show(type, time, disableAnimation);
+    await this.rain.show(type, time, disableAnimation);
+    await this.drizzle.show(type, time, disableAnimation);
+    await this.snow.show(type, time, disableAnimation);
+    await this.hail.show(type, time, disableAnimation);
+    await this.lightning.show(type, time, disableAnimation);
+    void this.sunMask.show(type, time, disableAnimation);
+    await this.sun.show(type, time, disableAnimation);
+    await this.fog.show(type, time, disableAnimation);
   }
 
   public async unsetIcon(force = false): Promise<void> {
