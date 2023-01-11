@@ -107,17 +107,17 @@ export class AnimatedWeatherIcon {
   }
 
   public async unsetIcon(force = false): Promise<void> {
-    void this.sunMask.hide(this.currentType, force);
     await this.sun.hide(this.currentType, force);
+    void this.sunMask.hide(this.currentType, force);
     await this.lightning.hide(this.currentType, force);
     await this.rain.hide(this.currentType, force);
     await this.drizzle.hide(this.currentType, force);
     await this.snow.hide(this.currentType, force);
     await this.hail.hide(this.currentType, force);
-    void this.cloudFullMask.hide(this.currentType, force);
     await this.cloudFull.hide(this.currentType, force);
-    void this.cloudPartialMask.hide(this.currentType, force);
+    void this.cloudFullMask.hide(this.currentType, force);
     await this.cloudPartial.hide(this.currentType, force);
+    void this.cloudPartialMask.hide(this.currentType, force);
     await this.fog.hide(this.currentType, force);
   }
 }
