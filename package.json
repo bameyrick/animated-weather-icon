@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@qntm-code/utils": "^2.7.0",
-    "uuid": "^9.0.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
