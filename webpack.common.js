@@ -1,10 +1,15 @@
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 
-import { NoEmitOnErrorsPlugin, ProgressPlugin } from 'webpack';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
+import webpack from 'webpack';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 
-import postcssPlugins from './postcss.config';
+import postcssPlugins from './postcss.config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { ProgressPlugin } = webpack;
 
 export default function (mode) {
   const devMode = mode === 'development';
@@ -83,6 +88,8 @@ export default function (mode) {
                 sourceMap: false,
                 sassOptions: {
                   precision: 8,
+                  quietDeps: true,
+                  silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'slash-div'],
                   includePaths: [path.resolve('./src/styles')],
                 },
               },
@@ -102,8 +109,6 @@ export default function (mode) {
     },
 
     plugins: [
-      new NoEmitOnErrorsPlugin(),
-
       new ProgressPlugin(),
 
       new CircularDependencyPlugin({

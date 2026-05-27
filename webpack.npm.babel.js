@@ -1,8 +1,8 @@
 import * as path from 'path';
-import merge from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
+import { merge } from 'webpack-merge';
 
-import commonConfig from './webpack.common';
+import commonConfig from './webpack.common.js';
 
 const config = commonConfig('production');
 

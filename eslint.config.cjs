@@ -1,0 +1,55 @@
+const { FlatCompat } = require('@eslint/eslintrc');
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+module.exports = [
+  {
+    ignores: ['build/**', 'dist/**'],
+  },
+  ...compat.config({
+    root: true,
+    plugins: ['prettier'],
+    env: {
+      browser: true,
+    },
+    overrides: [
+      {
+        files: ['*.ts'],
+        parserOptions: {
+          project: ['tsconfig.json'],
+          createDefaultProgram: true,
+        },
+        extends: ['plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended-requiring-type-checking', 'prettier'],
+        rules: {
+          '@typescript-eslint/no-inferrable-types': 'off',
+          'no-extra-parens': ['error'],
+          'arrow-parens': ['error', 'as-needed'],
+        },
+      },
+    ],
+    rules: {
+      'no-unused-vars': [1],
+      semi: ['error', 'always'],
+      'space-before-function-paren': [
+        'error',
+        {
+          anonymous: 'never',
+          named: 'never',
+          asyncArrow: 'always',
+        },
+      ],
+      'no-alert': 0,
+      quotes: [2, 'single'],
+      strict: [2, 'never'],
+      'new-cap': [0],
+      'consistent-return': 0,
+      'no-underscore-dangle': 0,
+      indent: [2, 2, { SwitchCase: 1 }],
+      'space-before-blocks': [2, 'always'],
+      'no-var': [1],
+      'one-var': [0],
+    },
+  }),
+];
