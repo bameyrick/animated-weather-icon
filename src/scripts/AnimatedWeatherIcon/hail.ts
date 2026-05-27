@@ -5,7 +5,7 @@ export default class Hail extends WeatherPartAbstract {
   protected baseClass: string = 'Hail';
   protected types: AnimatedWeatherTypes[] = [AnimatedWeatherTypes.Hail];
 
-  private drops: SVGPathElement[];
+  private drops!: SVGPathElement[];
 
   constructor(protected iconContext: HTMLElement) {
     super();

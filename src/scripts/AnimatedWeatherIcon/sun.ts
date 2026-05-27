@@ -25,12 +25,15 @@ export default class Sun extends WeatherPartAbstract {
 
   protected types = [AnimatedWeatherTypes.Clear, ...this.smallTypes];
 
-  private circle: SVGPathElement;
-  private raysContainer: SVGElement;
-  private rays: SVGPathElement[];
-  private moon: SVGPathElement;
+  private circle!: SVGPathElement;
+  private raysContainer!: SVGElement;
+  private rays!: SVGPathElement[];
+  private moon!: SVGPathElement;
 
-  constructor(protected iconContext: HTMLElement, private readonly mask?: boolean) {
+  constructor(
+    protected iconContext: HTMLElement,
+    private readonly mask?: boolean
+  ) {
     super();
     this.initialise();
   }

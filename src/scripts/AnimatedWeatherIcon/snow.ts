@@ -12,7 +12,7 @@ export default class Snow extends RainAbstract {
     AnimatedWeatherTypes.SleetShowers,
   ];
   protected types = [...this.lightTypes, ...this.mediumTypes, ...this.heavyTypes];
-  private flake: SVGPathElement;
+  private flake!: SVGPathElement;
 
   constructor(protected iconContext: HTMLElement) {
     super();

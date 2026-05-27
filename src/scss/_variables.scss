@@ -1,12 +1,14 @@
+@use 'sass:color';
+
 // Colours
 $white: #fff;
 $off-white: #eee;
 $grey: #999;
-$light-grey: lighten($grey, 20%);
+$light-grey: color.adjust($grey, $lightness: 20%);
 $dark-grey: #555;
 $yellow: #ffed54;
 $blue: #03a9f4;
-$light-blue: lighten($blue, 35%);
+$light-blue: color.adjust($blue, $lightness: 35%);
 $black: #000;
 
 $stroke-width: 6;

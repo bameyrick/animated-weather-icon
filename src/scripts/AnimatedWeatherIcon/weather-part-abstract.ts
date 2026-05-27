@@ -6,13 +6,13 @@ export default abstract class WeatherPartAbstract {
   protected abstract iconContext: HTMLElement;
   protected abstract baseClass: string;
   protected abstract types: AnimatedWeatherTypes[];
-  protected visible: boolean;
-  protected time: AnimatedWeatherTimes;
-  protected activationPaths: SVGPathElement[];
-  protected type: AnimatedWeatherTypes;
+  protected visible = false;
+  protected time!: AnimatedWeatherTimes;
+  protected activationPaths!: SVGPathElement[];
+  protected type!: AnimatedWeatherTypes;
 
-  protected context: SVGElement;
-  private paths: SVGPathElement[];
+  protected context!: SVGElement;
+  private paths!: SVGPathElement[];
 
   protected disableAnimation = false;
 

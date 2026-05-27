@@ -14,7 +14,7 @@ export default class Lightning extends WeatherPartAbstract {
     AnimatedWeatherTypes.ThunderStormHeavyDrizzle,
   ];
 
-  private lightningPath: SVGPathElement;
+  private lightningPath!: SVGPathElement;
 
   constructor(protected iconContext: HTMLElement) {
     super();

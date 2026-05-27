@@ -5,7 +5,7 @@ export default abstract class RainAbstract extends WeatherPartAbstract {
   protected abstract lightTypes: AnimatedWeatherTypes[];
   protected abstract mediumTypes: AnimatedWeatherTypes[];
   protected abstract heavyTypes: AnimatedWeatherTypes[];
-  protected drops: SVGPathElement[];
+  protected drops!: SVGPathElement[];
 
   protected getElements(): void {
     this.drops = [...(<never>this.context.querySelectorAll(`.${this.baseClass}__drop`))];

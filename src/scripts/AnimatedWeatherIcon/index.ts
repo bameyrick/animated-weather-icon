@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid';
+import SVG from '../../icon.svg';
 import CloudFull from './cloud-full';
 import CloudPartial from './cloud-partial';
 import Drizzle from './drizzle';
@@ -13,30 +13,27 @@ import { AnimatedWeatherTypes } from './weather-types';
 
 import '../../scss/index.scss';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
-const SVG: string = require('../../icon.svg');
-
 export { AnimatedWeatherTimes } from './weather-times';
 export { AnimatedWeatherTypes } from './weather-types';
 
 export class AnimatedWeatherIcon {
-  private currentType: AnimatedWeatherTypes;
-  private currentTime: AnimatedWeatherTimes;
-  private icon: HTMLElement;
-  private sunMask: Sun;
-  private sun: Sun;
-  private cloudFull: CloudFull;
-  private cloudPartial: CloudPartial;
-  private cloudFullMask: CloudFull;
-  private cloudPartialMask: CloudPartial;
-  private rain: Rain;
-  private drizzle: Drizzle;
-  private snow: Snow;
-  private lightning: Lightning;
-  private hail: Hail;
-  private fog: Fog;
+  private currentType!: AnimatedWeatherTypes;
+  private currentTime!: AnimatedWeatherTimes;
+  private icon!: HTMLElement;
+  private sunMask!: Sun;
+  private sun!: Sun;
+  private cloudFull!: CloudFull;
+  private cloudPartial!: CloudPartial;
+  private cloudFullMask!: CloudFull;
+  private cloudPartialMask!: CloudPartial;
+  private rain!: Rain;
+  private drizzle!: Drizzle;
+  private snow!: Snow;
+  private lightning!: Lightning;
+  private hail!: Hail;
+  private fog!: Fog;
 
-  private readonly id = uuid();
+  private readonly id = window.crypto.randomUUID();
 
   private disableAnimation = false;
 

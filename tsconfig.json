@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "module": "commonjs",
+    "moduleResolution": "node16",
+    "module": "Node16",
     "target": "ES6",
+    "rootDir": "src",
     "sourceMap": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -11,6 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "declaration": true,
     "declarationDir": "dist",
     "lib": ["es2017.object", "es2015", "es2017", "dom"]

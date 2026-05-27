@@ -6,12 +6,15 @@ export default abstract class CloudAbstract extends WeatherPartAbstract {
   protected baseClass: string = this.mask ? 'CloudMask' : 'Cloud';
   protected abstract typeClass: string;
 
-  protected path: SVGPathElement;
+  protected path!: SVGPathElement;
 
-  private dashArrayOffset: string;
+  private dashArrayOffset!: string;
   private readonly animationDuration: number = 1000;
 
-  constructor(protected iconContext: HTMLElement, protected mask?: boolean) {
+  constructor(
+    protected iconContext: HTMLElement,
+    protected mask?: boolean
+  ) {
     super();
   }
 

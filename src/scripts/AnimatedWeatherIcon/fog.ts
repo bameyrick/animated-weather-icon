@@ -6,7 +6,7 @@ export default class Fog extends WeatherPartAbstract {
   protected baseClass: string = 'Fog';
   protected types: AnimatedWeatherTypes[] = [AnimatedWeatherTypes.Fog];
 
-  private fogBars: SVGPathElement[];
+  private fogBars!: SVGPathElement[];
 
   constructor(protected iconContext: HTMLElement) {
     super();
