@@ -18,7 +18,8 @@
     "lint": "eslint src/**/*.ts --fix",
     "tidy-clean": "rm -rf ./build ./dist",
     "dedupe-deps": "npx yarn-deduplicate yarn.lock && yarn",
-    "check-package": "tar tvf $(npm pack)"
+    "check-package": "tar tvf $(npm pack)",
+    "upgrade-interactive": "npx npm-check --update"
   },
   "husky": {
     "hooks": {
